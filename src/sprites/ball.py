@@ -5,7 +5,7 @@ class Ball:
         self.x = x
         self.y = y
 
-        window_size = window_size
+        self.window_size = window_size
         game_window = game_window
 
         self.x_dir = 1
@@ -22,12 +22,12 @@ class Ball:
 
         if self.x <= 0:
             self.x_dir = 1
-        elif self.x >= window_size[0]:
+        elif self.x >= self.window_size[0]:
             self.x_dir = -1
 
         if self.y <= 0:
             self.y_dir = 1
-        if self.y <= window_size[1]:
+        if self.y <= self.window_size[1]:
             self.y_dir = -1
 
         self.x += self.speed * self.direction[0]
