@@ -25,15 +25,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 break
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    own_movement = 1
-                elif event.key == pygame.K_DOWN:
-                    own_movement = -1
-                elif event.key == pygame.K_w:
-                    own_movement = 1
-                elif event.key == pygame.K_s:
-                    own_movement = -1
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_UP]:
+               own_movement = -1
+            if keys[pygame.K_DOWN]:
+                own_movement = 1
+            if keys[pygame.K_w]:
+                own_movement = -1
+            if keys[pygame.K_s]:
+                own_movement = 1
             own_paddle.update(own_movement)
     
         own_paddle.display_paddle()
