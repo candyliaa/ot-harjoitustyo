@@ -1,7 +1,7 @@
 import pygame
 
 class Paddle:
-    def __init__(window_size, game_window, self, x, y, speed=1, color=(), size=300):
+    def __init__(self, window_size, game_window, x, y, speed=1, color=(), size=300):
         self.x = x
         self.y = y
         self.size = size
@@ -12,8 +12,8 @@ class Paddle:
         self.speed = speed
         self.color = color
 
-        self.paddle = pygame.draw.rect(game_window, self.color, self.paddle_rect)
         self.paddle_rect = pygame.Rect(game_window, self.x, self.y, 50, size)
+        self.paddle = pygame.draw.rect(game_window, self.color, self.paddle_rect)
 
     def update(self, movement=0):
         self.y += self.speed * movement
