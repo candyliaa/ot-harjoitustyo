@@ -2,9 +2,10 @@ import pygame
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
-from config import window_size, game_window
+from config import window_size, game_window, frames_per_second
 
 def main():
+    clock = pygame.time.Clock()
 
     pygame.init()
 
@@ -34,9 +35,13 @@ def main():
                 elif event.key == pygame.K_s:
                     own_movement = -1
             own_paddle.update(own_movement)
+    
+        own_paddle.display_paddle()
+        enemy_paddle.display_paddle()
+        ball.display_ball()
+
+        pygame.display.update()
+        clock.tick(frames_per_second)
 
 if __name__ == "__main__":
     main()
-
-
-
