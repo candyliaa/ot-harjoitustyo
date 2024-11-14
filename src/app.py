@@ -2,11 +2,13 @@ import pygame
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
-from config import window_size, game_window, frames_per_second
+from config import window_size, frames_per_second
 
 def main():
 
     running = True
+
+    game_window = pygame.display.set_mode(window_size)
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -40,8 +42,8 @@ def main():
                 own_movement = 0
         own_paddle.update(own_movement)
     
-        own_paddle.display_paddle()
-        enemy_paddle.display_paddle()
+        own_paddle.display_paddle(game_window)
+        enemy_paddle.display_paddle(game_window)
         ball.display_ball()
 
         pygame.display.update()

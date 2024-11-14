@@ -1,6 +1,6 @@
 import unittest
 from sprites.paddle import Paddle
-from config import window_size, game_window, speed
+from config import window_size, speed
 
 class TestPaddle(unittest.TestCase):
     def setUp(self):
