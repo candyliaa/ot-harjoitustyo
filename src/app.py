@@ -28,13 +28,15 @@ def main():
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
                own_movement = -1
-            if keys[pygame.K_DOWN]:
+            elif keys[pygame.K_DOWN]:
                 own_movement = 1
-            if keys[pygame.K_w]:
+            elif keys[pygame.K_w]:
                 own_movement = -1
-            if keys[pygame.K_s]:
+            elif keys[pygame.K_s]:
                 own_movement = 1
-            own_paddle.update(own_movement)
+            else:
+                own_movement = 0
+        own_paddle.update(own_movement)
     
         own_paddle.display_paddle()
         enemy_paddle.display_paddle()
@@ -46,3 +48,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    pygame.quit()
