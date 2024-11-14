@@ -34,7 +34,7 @@ class Ball:
         self.y += self.speed * self.y_dir
 
     def display_ball(self):
-        return self.ball
+        pygame.draw.circle(self.game_window, self.color, (self.x, self.y), self.size)
     
     def ball_collision(self):
         self.x_dir *= -1
