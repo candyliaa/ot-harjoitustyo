@@ -17,7 +17,7 @@ class Paddle:
         if self.y <= 0:
             self.y = 0
         if self.y + self.size >= self.window_size[1]:
-            self.y = self.window_size[1]
+            self.y = self.window_size[1] - self.size
     
     def display_paddle(self):
         paddle_rect = pygame.Rect(self.x, self.y, 40, self.size)
