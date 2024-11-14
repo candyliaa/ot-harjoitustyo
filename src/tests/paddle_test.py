@@ -21,3 +21,13 @@ class TestPaddle(unittest.TestCase):
     def test_paddle_moves_correct_amount_on_down_input(self):
         self.paddle.update(-1)
         self.assertEqual(self.start_y - 5, self.paddle.y)
+
+    def test_paddle_does_not_go_off_screen_up(self):
+        self.paddle.y = -5
+        self.paddle.update(-1)
+        self.assertEqual(0, self.paddle.y)
+
+    def test_paddle_does_not_go_off_screen_down(self):
+        self.paddle.y = window_size[1] + 1
+        self.paddle.update(1)
+        self.assertEqual(window_size[1] - self.paddle.size, self.paddle.y)
