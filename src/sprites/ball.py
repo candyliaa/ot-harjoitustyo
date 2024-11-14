@@ -1,13 +1,13 @@
 import pygame
-from src.config import window_size, game_window
+from ..config import window_size, game_window
 
-class Ball():
+class Ball:
     def __init__(self, x=window_size[0]//2, y=window_size[1]//2, speed=1, color=(255, 255, 255), size=2):
         self.x = x
         self.y = y
 
         self.x_dir = 1
-        self.y_dir = 2
+        self.y_dir = 1
 
         self.speed = speed
         self.color = color
@@ -33,3 +33,6 @@ class Ball():
 
     def return_ball(self):
         return self.ball
+    
+    def ball_collision(self):
+        self.x_dir *= -1
