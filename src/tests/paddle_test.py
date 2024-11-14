@@ -16,8 +16,8 @@ class TestPaddle(unittest.TestCase):
 
     def test_paddle_moves_correct_amount_on_up_input(self):
         self.paddle.update(1)
-        self.assertEqual(self.start_y - 5, self.paddle.y)
+        self.assertEqual(self.start_y + 5, self.paddle.y)
 
     def test_paddle_moves_correct_amount_on_down_input(self):
         self.paddle.update(-1)
-        self.assertEqual(self.start_y + 5, self.paddle.y)
+        self.assertEqual(self.start_y - 5, self.paddle.y)
