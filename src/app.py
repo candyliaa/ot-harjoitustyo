@@ -2,7 +2,7 @@ import pygame
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
-from src.config import window_size, game_window
+from config import window_size, game_window
 
 def main():
 
@@ -12,10 +12,10 @@ def main():
 
     game_window.fill(color_dict["black"])
 
-    ball = Ball()
+    ball = Ball(window_size, game_window)
 
-    own_paddle = Paddle(color=(0, 255, 0))
-    enemy_paddle = Paddle(x=100, color=(0, 255, 0))
+    own_paddle = Paddle(window_size, game_window, color=(0, 255, 0))
+    enemy_paddle = Paddle(window_size, game_window, x=100, color=(0, 255, 0))
 
     paddles = [own_paddle, enemy_paddle]
 
