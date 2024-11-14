@@ -21,3 +21,6 @@ class Paddle:
             self.y = 0
         if self.y + self.size >= self.window_size[1]:
             self.y = self.window_size[1]
+    
+    def display_paddle(self):
+        return self.paddle

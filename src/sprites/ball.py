@@ -33,7 +33,7 @@ class Ball:
         self.x += self.speed * self.direction[0]
         self.y += self.speed * self.direction[1]
 
-    def return_ball(self):
+    def display_ball(self):
         return self.ball
     
     def ball_collision(self):
