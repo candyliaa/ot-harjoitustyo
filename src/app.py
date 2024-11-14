@@ -6,6 +6,8 @@ from config import window_size, game_window, frames_per_second
 
 def main():
 
+    running = True
+
     pygame.init()
     clock = pygame.time.Clock()
 
@@ -20,11 +22,11 @@ def main():
     own_movement = 0
     enemy_movement = 0
     
-    while True:
+    while running:
         ball.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                break
+                running = False
             keys = pygame.key.get_pressed()
             if keys[pygame.K_UP]:
                own_movement = -1
