@@ -1,12 +1,3 @@
-import pygame
-
-pygame.init()
-
-window_size = (1280, 1024)
-game_window = pygame.display.set_mode(window_size)
-
-
-
 class Paddle():
     def __init__(self, x=window_size[0]-100, y=window_size[1]//2, speed=1, color=(), size=300):
         self.x = x
