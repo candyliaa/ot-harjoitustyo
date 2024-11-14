@@ -5,12 +5,11 @@ from sprites.colors import color_dict
 from config import window_size, game_window, frames_per_second
 
 def main():
-    clock = pygame.time.Clock()
 
     pygame.init()
+    clock = pygame.time.Clock()
 
     pygame.display.set_caption("Pong!")
-
     game_window.fill(color_dict["black"])
 
     ball = Ball(window_size, game_window, window_size[0]//2, window_size[1]//2)
@@ -42,6 +41,7 @@ def main():
         ball.display_ball()
 
         pygame.display.update()
+        game_window.fill(color_dict["black"])
         clock.tick(frames_per_second)
 
 if __name__ == "__main__":
