@@ -6,7 +6,7 @@ class Ball:
         self.y = y
 
         self.window_size = window_size
-        game_window = game_window
+        self.game_window = game_window
 
         self.x_dir = 1
         self.y_dir = 1
@@ -16,7 +16,7 @@ class Ball:
 
         self.size = size
 
-        self.ball = pygame.draw.circle(game_window, self.color, (self.x, self.y), self.size)
+        self.ball = pygame.draw.circle(self.game_window, self.color, (self.x, self.y), self.size)
 
     def update(self):
 
