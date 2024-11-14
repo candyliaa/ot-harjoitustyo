@@ -1,3 +1,6 @@
+import pygame
+from src.config import window_size, game_window
+
 class Ball():
     def __init__(self, x=window_size[0]//2, y=window_size[1]//2, speed=1, color=(255, 255, 255), size=2):
         self.x = x
