@@ -22,6 +22,7 @@ def main():
     enemy_movement = 0
     
     while True:
+        ball.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 break

@@ -30,8 +30,8 @@ class Ball:
         if self.y <= self.window_size[1]:
             self.y_dir = -1
 
-        self.x += self.speed * self.direction[0]
-        self.y += self.speed * self.direction[1]
+        self.x += self.speed * self.x_dir
+        self.y += self.speed * self.y_dir
 
     def display_ball(self):
         return self.ball
