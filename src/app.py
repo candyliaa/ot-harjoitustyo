@@ -15,6 +15,10 @@ def main():
     game_window = pygame.display.set_mode(window_size)
 
     pygame.init()
+
+    pygame.font.init()
+    font = pygame.font.SysFont("Arial", 24)
+
     clock = pygame.time.Clock()
 
     collision_timeout = 0
@@ -69,6 +73,9 @@ def main():
         own_paddle.display_paddle(game_window)
         enemy_paddle.display_paddle(game_window)
         ball.draw_ball(game_window)
+
+        game_window.blit(font.render(f"Points: {own_score}", False, color_dict["white"]), (window_size[0] - 125, 10))
+        game_window.blit(font.render(f"Points: {enemy_score}", False, color_dict["white"]), (25, 10))
 
         pygame.display.update()
         game_window.fill(color_dict["black"])
