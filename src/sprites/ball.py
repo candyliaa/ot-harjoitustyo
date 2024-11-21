@@ -1,5 +1,6 @@
 import pygame
 
+
 class Ball:
     def __init__(self, x, y, speed=5, color=(255, 255, 255), size=10):
         self.x = x
@@ -28,10 +29,12 @@ class Ball:
         self.y += self.speed * self.y_dir
 
     def draw_ball(self, game_window):
-        pygame.draw.circle(game_window, self.color, (self.x, self.y), self.size)
+        pygame.draw.circle(game_window, self.color,
+                           (self.x, self.y), self.size)
 
     def display_ball(self, game_window):
-        pygame.draw.circle(game_window, self.color, (self.x, self.y), self.size)
+        pygame.draw.circle(game_window, self.color,
+                           (self.x, self.y), self.size)
 
     def ball_collision(self):
         self.x_dir *= -1
