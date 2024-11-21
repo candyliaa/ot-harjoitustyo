@@ -7,6 +7,7 @@ from config import window_size, FPS
 
 
 def main():
+    """Main function for running the game."""
 
     running = True
 

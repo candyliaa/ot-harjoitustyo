@@ -2,6 +2,7 @@ import pygame
 
 
 class Paddle:
+    """Paddle object for the pong game."""
     def __init__(self, x, y, speed=10, color=(), size=300):
         self.x = x
         self.y = y
@@ -11,6 +12,7 @@ class Paddle:
         self.width = 40
 
     def update(self, window_size, movement=0):
+        """Logic for moving a paddle."""
         self.y += self.speed * movement
         if self.y <= 0:
             self.y = 0
@@ -18,11 +20,14 @@ class Paddle:
             self.y = window_size[1] - self.size
 
     def display_paddle(self, game_window):
+        """Draw paddle on the game window."""
         paddle_rect = self.get_paddle_rect()
         pygame.draw.rect(game_window, self.color, paddle_rect)
 
     def get_paddle_rect(self):
+        """Return paddle rectangle used for collision detection."""
         return pygame.Rect(self.x, self.y, self.width, self.size)
     
     def get_center(self):
+        """Return the center coordinates of the paddle."""
         return pygame.math.Vector2(self.x + self.width // 2, self.y + self.size // 2)
