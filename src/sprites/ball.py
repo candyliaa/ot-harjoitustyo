@@ -2,11 +2,11 @@ import pygame
 
 class Ball:
     """Ball object for the pong game."""
-    def __init__(self, x, y, speed=15, color=(255, 255, 255), size=10):
-        self.__initial_x = x
-        self.__initial_y = y
+    def __init__(self, pos, speed=15, color=(255, 255, 255), size=10):
+        self.__initial_x = pos[0]
+        self.__initial_y = pos[1]
 
-        self.position = pygame.math.Vector2(x, y)
+        self.position = pygame.math.Vector2(pos[0], pos[1])
         self.direction = pygame.math.Vector2(1, 1)
 
         self.speed = speed
@@ -39,7 +39,9 @@ class Ball:
 
     def get_ball_rect(self):
         """Return the rectangle for the ball which is used for collision detection."""
-        return pygame.Rect(self.position.x - self.size, self.position.y - self.size, self.size * 2, self.size * 2)
+        return pygame.Rect(
+            self.position.x - self.size, self.position.y - self.size, self.size * 2, self.size * 2
+            )
 
     def collision(self, paddle):
         """Collision logic for a ball hitting a paddle."""

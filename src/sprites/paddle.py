@@ -3,9 +3,9 @@ import pygame
 
 class Paddle:
     """Paddle object for the pong game."""
-    def __init__(self, x, y, speed=10, color=(), size=300):
-        self.x = x
-        self.y = y
+    def __init__(self, pos, speed=10, color=(0, 255, 0), size=300):
+        self.x = pos[0]
+        self.y = pos[1]
         self.size = size
         self.speed = speed
         self.color = color
@@ -27,7 +27,7 @@ class Paddle:
     def get_paddle_rect(self):
         """Return paddle rectangle used for collision detection."""
         return pygame.Rect(self.x, self.y, self.width, self.size)
-    
+
     def get_center(self):
         """Return the center coordinates of the paddle."""
         return pygame.math.Vector2(self.x + self.width // 2, self.y + self.size // 2)
