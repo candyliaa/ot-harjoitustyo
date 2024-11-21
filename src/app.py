@@ -17,6 +17,8 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
 
+    collision_timeout = 0
+
     pygame.display.set_caption("Pong!")
     game_window.fill(color_dict["black"])
 
@@ -56,10 +58,13 @@ def main():
             elif scored == "enemy":
                 enemy_score += 1
 
-        if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
-            ball.collision()
-        if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
-            ball.collision()
+        if collision_timeout == 0:
+            if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
+                ball.collision()
+                collision_timeout = 10
+            if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
+                ball.collision()
+                collision_timeout = 10
 
         own_paddle.display_paddle(game_window)
         enemy_paddle.display_paddle(game_window)
@@ -68,6 +73,9 @@ def main():
         pygame.display.update()
         game_window.fill(color_dict["black"])
         clock.tick(FPS)
+
+        if collision_timeout > 0:
+            collision_timeout -= 1
 
 
 if __name__ == "__main__":
