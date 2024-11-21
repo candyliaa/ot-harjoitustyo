@@ -1,5 +1,5 @@
 import pygame
-from random import random
+import random
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
@@ -53,12 +53,12 @@ def main():
             else:
                 own_movement = 0
 
-        if random() < 0.8:
-            enemy_movement = ball.y_dir
-            if ball.y < enemy_paddle.y and enemy_movement == 1:
-                enemy_movement = -ball.y_dir
-            elif ball.y > enemy_paddle.y + enemy_paddle.size and enemy_movement == -1:
-                enemy_movement = -ball.y_dir
+        if random.random() < 0.8:
+            enemy_movement = ball.direction.y
+            if ball.position.y < enemy_paddle.y and enemy_movement == 1:
+                enemy_movement = -ball.direction.y
+            elif ball.position.y > enemy_paddle.y + enemy_paddle.size and enemy_movement == -1:
+                enemy_movement = -ball.direction.y
 
         scored = ball.update(window_size)
         own_paddle.update(window_size, own_movement)
@@ -74,10 +74,11 @@ def main():
 
         if collision_timeout == 0:
             if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
-                ball.collision()
+                ball.collision(own_paddle)
                 collision_timeout = 10
             if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
-                ball.collision()
+                ball.collision(enemy_paddle)
+                print(ball.direction)
                 collision_timeout = 10
 
         own_paddle.display_paddle(game_window)
