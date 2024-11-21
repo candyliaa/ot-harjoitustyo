@@ -1,7 +1,7 @@
 import pygame
 
 class Ball:
-    def __init__(self, x, y, speed=10, color=(255, 255, 255), size=10):
+    def __init__(self, x, y, speed=15, color=(255, 255, 255), size=10):
         self.__initial_x = x
         self.__initial_y = y
 
@@ -38,10 +38,9 @@ class Ball:
         return pygame.Rect(self.position.x - self.size, self.position.y - self.size, self.size * 2, self.size * 2)
 
     def collision(self, paddle):
-        if abs(self.position.y - paddle.get_center().y) < 15:
-            self.direction.x *= -1
-        else:
-            self.direction = (self.position - paddle.get_center()).normalize()
+        self.direction.x *= -1
+        self.direction += 0.6 * (self.position - paddle.get_center()).normalize()
+        self.direction = self.direction.normalize()
 
     def reset(self):
         self.position.x = self.__initial_x
