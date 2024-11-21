@@ -53,12 +53,13 @@ def main():
             else:
                 own_movement = 0
 
-        if random.random() < 0.8:
-            enemy_movement = ball.direction.y
-            if ball.position.y < enemy_paddle.y and enemy_movement == 1:
-                enemy_movement = -ball.direction.y
-            elif ball.position.y > enemy_paddle.y + enemy_paddle.size and enemy_movement == -1:
-                enemy_movement = -ball.direction.y
+        if random.random() < 0.6:
+            if enemy_paddle.get_center().y < ball.position.y:
+                enemy_movement = 1
+            elif enemy_paddle.get_center().y > ball.position.y:
+                enemy_movement = -1
+            else:
+                enemy_movement = ball.direction.y
 
         scored = ball.update(window_size)
         own_paddle.update(window_size, own_movement)
