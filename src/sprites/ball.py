@@ -28,6 +28,8 @@ class Ball:
         self.x += self.speed * self.x_dir
         self.y += self.speed * self.y_dir
 
+        print(self.x, self.y)
+
     def draw_ball(self, game_window):
         pygame.draw.circle(game_window, self.color,
                            (self.x, self.y), self.size)
