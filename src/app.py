@@ -1,4 +1,5 @@
 import pygame
+from random import random
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
@@ -52,9 +53,18 @@ def main():
             else:
                 own_movement = 0
 
+        if random() < 0.8:
+            enemy_movement = ball.y_dir
+            if ball.y < enemy_paddle.y and enemy_movement == 1:
+                enemy_movement = -ball.y_dir
+            elif ball.y > enemy_paddle.y + enemy_paddle.size and enemy_movement == -1:
+                enemy_movement = -ball.y_dir
+
         scored = ball.update(window_size)
         own_paddle.update(window_size, own_movement)
         enemy_paddle.update(window_size, enemy_movement)
+
+        enemy_movement = 0
 
         if scored:
             if scored == "own":
