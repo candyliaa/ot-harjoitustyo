@@ -35,7 +35,6 @@ def paddle_collision(own_paddle, enemy_paddle, ball):
         return True
     if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
         ball.collision(enemy_paddle)
-        print(ball.direction)
         return True
     return False
 
@@ -71,7 +70,6 @@ def main():
     own_movement = 0
     enemy_movement = 0
 
-    # Game loop logic
     while running:
         for event in pygame.event.get():
             if not keep_running(event):
