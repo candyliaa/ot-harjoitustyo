@@ -47,9 +47,9 @@ def main():
         own_paddle.update(window_size, own_movement)
         enemy_paddle.update(window_size, enemy_movement)
 
-        if own_paddle.get_paddle_rect().colliderect(ball.get_ball_rect(game_window)):
+        if pygame.Rect.colliderect(ball.get_ball_rect(game_window), own_paddle.get_paddle_rect()):
             ball.collision()
-        if enemy_paddle.get_paddle_rect().colliderect(ball.get_ball_rect(game_window)):
+        if pygame.Rect.colliderect(ball.get_ball_rect(game_window), enemy_paddle.get_paddle_rect()):
             ball.collision()
 
         own_paddle.display_paddle(game_window)
