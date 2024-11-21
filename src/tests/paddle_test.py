@@ -1,12 +1,12 @@
 import unittest
 from sprites.paddle import Paddle
-from config import window_size, speed
+from config import window_size, SPEED
 
 class TestPaddle(unittest.TestCase):
     def setUp(self):
         self.start_x = window_size[0]-100
         self.start_y = window_size[1]//2
-        self.paddle = Paddle(window_size, self.start_x, self.start_y, speed=speed, color=(0, 255, 0))
+        self.paddle = Paddle(window_size, self.start_x, self.start_y, speed=SPEED, color=(0, 255, 0))
 
     def test_paddle_in_correct_x_position_at_start(self):
         self.assertEqual(self.start_x, self.paddle.x)
