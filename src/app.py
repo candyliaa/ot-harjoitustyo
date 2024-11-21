@@ -43,7 +43,7 @@ def main():
                 own_movement = 1
             else:
                 own_movement = 0
-        own_paddle.update(game_window, own_movement)
+        own_paddle.update(window_size, own_movement)
 
         own_paddle.display_paddle(game_window)
         enemy_paddle.display_paddle(game_window)
