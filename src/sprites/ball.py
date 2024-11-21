@@ -2,7 +2,7 @@ import pygame
 
 
 class Ball:
-    def __init__(self, x, y, speed=5, color=(255, 255, 255), size=10):
+    def __init__(self, x, y, speed=20, color=(255, 255, 255), size=10):
         self.x = x
         self.y = y
 
@@ -32,9 +32,9 @@ class Ball:
         pygame.draw.circle(game_window, self.color,
                            (self.x, self.y), self.size)
 
-    def display_ball(self, game_window):
-        pygame.draw.circle(game_window, self.color,
+    def get_ball_rect(self, game_window):
+        return pygame.draw.circle(game_window, self.color,
                            (self.x, self.y), self.size)
 
-    def ball_collision(self):
+    def collision(self):
         self.x_dir *= -1

@@ -43,11 +43,18 @@ def main():
                 own_movement = 1
             else:
                 own_movement = 0
+
         own_paddle.update(window_size, own_movement)
+        enemy_paddle.update(window_size, enemy_movement)
+
+        if own_paddle.get_paddle_rect().colliderect(ball.get_ball_rect(game_window)):
+            ball.collision()
+        if enemy_paddle.get_paddle_rect().colliderect(ball.get_ball_rect(game_window)):
+            ball.collision()
 
         own_paddle.display_paddle(game_window)
         enemy_paddle.display_paddle(game_window)
-        ball.display_ball(game_window)
+        ball.draw_ball(game_window)
 
         pygame.display.update()
         game_window.fill(color_dict["black"])

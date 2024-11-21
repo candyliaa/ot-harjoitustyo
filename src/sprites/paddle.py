@@ -17,5 +17,8 @@ class Paddle:
             self.y = window_size[1] - self.size
 
     def display_paddle(self, game_window):
-        paddle_rect = pygame.Rect(self.x, self.y, 40, self.size)
+        paddle_rect = self.get_paddle_rect()
         pygame.draw.rect(game_window, self.color, paddle_rect)
+
+    def get_paddle_rect(self):
+        return pygame.Rect(self.x, self.y, 40, self.size)
