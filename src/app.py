@@ -3,12 +3,48 @@ import random
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
-from config import window_size, FPS
+from config import window_size, difficulty, FPS
 
+def keep_running(event):
+    if event.type == pygame.QUIT:
+        return False
+    return True
+
+def get_input():
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP]:
+        return -1
+    elif keys[pygame.K_DOWN]:
+        return 1
+    elif keys[pygame.K_w]:
+        return -1
+    elif keys[pygame.K_s]:
+        return 1
+    else:
+        return 0
+
+def enemy_movement_logic(enemy_paddle, ball):
+    if enemy_paddle.get_center().y < ball.position.y:
+        return 1
+    elif enemy_paddle.get_center().y > ball.position.y:
+        return -1
+    else:
+        return ball.direction.y
+    
+def paddle_collision(own_paddle, enemy_paddle, ball):
+    if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
+        ball.collision(own_paddle)
+        collision_timeout = 10
+    if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
+        ball.collision(enemy_paddle)
+        print(ball.direction)
+        collision_timeout = 10
 
 def main():
     """Main function for running the game."""
 
+
+    # Initialize starting variables
     running = True
 
     own_score = 0
@@ -38,29 +74,16 @@ def main():
     own_movement = 0
     enemy_movement = 0
 
+    # Game loop logic
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if not keep_running(event):
                 running = False
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_UP]:
-                own_movement = -1
-            elif keys[pygame.K_DOWN]:
-                own_movement = 1
-            elif keys[pygame.K_w]:
-                own_movement = -1
-            elif keys[pygame.K_s]:
-                own_movement = 1
-            else:
-                own_movement = 0
 
-        if random.random() < 0.6:
-            if enemy_paddle.get_center().y < ball.position.y:
-                enemy_movement = 1
-            elif enemy_paddle.get_center().y > ball.position.y:
-                enemy_movement = -1
-            else:
-                enemy_movement = ball.direction.y
+        own_movement = get_input()
+
+        if random.random() < difficulty:
+            enemy_movement = enemy_movement_logic(enemy_paddle, ball)
 
         scored = ball.update(window_size)
         own_paddle.update(window_size, own_movement)
@@ -75,13 +98,7 @@ def main():
                 enemy_score += 1
 
         if collision_timeout == 0:
-            if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
-                ball.collision(own_paddle)
-                collision_timeout = 10
-            if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
-                ball.collision(enemy_paddle)
-                print(ball.direction)
-                collision_timeout = 10
+            paddle_collision(own_paddle, enemy_paddle, ball)
 
         own_paddle.display_paddle(game_window)
         enemy_paddle.display_paddle(game_window)
@@ -96,7 +113,6 @@ def main():
 
         if collision_timeout > 0:
             collision_timeout -= 1
-
 
 if __name__ == "__main__":
     main()
