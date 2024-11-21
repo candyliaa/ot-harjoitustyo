@@ -4,9 +4,6 @@ from sprites.paddle import Paddle
 from sprites.colors import color_dict
 from config import window_size, FPS
 
-# pylint: disable=no-member
-# Pylint argues that pygame has no member init, QUIT, key events etc. when they are mandatory.
-
 
 def main():
 
