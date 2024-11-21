@@ -15,20 +15,18 @@ class Ball:
         self.size = size
 
     def update(self, window_size):
-        if self.x <= 0:
+        if self.x <= 0 + 10:
             self.x_dir = 1
-        elif self.x >= window_size[0]:
+        elif self.x >= window_size[0] - 10:
             self.x_dir = -1
 
-        if self.y <= 0:
+        if self.y <= 0 + 10:
             self.y_dir = 1
-        if self.y <= window_size[1]:
+        if self.y >= window_size[1] - 10:
             self.y_dir = -1
 
         self.x += self.speed * self.x_dir
         self.y += self.speed * self.y_dir
-
-        print(self.x, self.y)
 
     def draw_ball(self, game_window):
         pygame.draw.circle(game_window, self.color,
