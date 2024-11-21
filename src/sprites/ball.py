@@ -2,7 +2,9 @@ import pygame
 
 
 class Ball:
-    def __init__(self, x, y, speed=20, color=(255, 255, 255), size=10):
+    def __init__(self, x, y, speed=10, color=(255, 255, 255), size=10):
+        self.__initial_x = x
+        self.__initial_y = y
         self.x = x
         self.y = y
 
@@ -15,14 +17,14 @@ class Ball:
         self.size = size
 
     def update(self, window_size):
-        if self.x <= 0 + 10:
-            self.x_dir = 1
-        elif self.x >= window_size[0] - 10:
-            self.x_dir = -1
+        if self.x <= 0 - self.size:
+            self.reset()
+        elif self.x >= window_size[0] + self.size:
+            self.reset()
 
-        if self.y <= 0 + 10:
+        if self.y <= 0 + self.size:
             self.y_dir = 1
-        if self.y >= window_size[1] - 10:
+        if self.y >= window_size[1] - self.size:
             self.y_dir = -1
 
         self.x += self.speed * self.x_dir
@@ -37,4 +39,9 @@ class Ball:
                            (self.x, self.y), self.size)
 
     def collision(self):
+        self.x_dir *= -1
+
+    def reset(self):
+        self.x = self.__initial_x
+        self.y = self.__initial_y
         self.x_dir *= -1
