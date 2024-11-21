@@ -9,6 +9,9 @@ def main():
 
     running = True
 
+    own_score = 0
+    enemy_score = 0
+
     game_window = pygame.display.set_mode(window_size)
 
     pygame.init()
@@ -28,7 +31,6 @@ def main():
     enemy_movement = 0
 
     while running:
-        ball.update(window_size)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -44,8 +46,18 @@ def main():
             else:
                 own_movement = 0
 
+        scored = ball.update(window_size)
         own_paddle.update(window_size, own_movement)
         enemy_paddle.update(window_size, enemy_movement)
+
+        if scored:
+            if scored == "own":
+                own_score += 1
+            elif scored == "enemy":
+                enemy_score += 1
+
+        print("own score:", own_score)
+        print("enemy score:", enemy_score)
 
         if pygame.Rect.colliderect(ball.get_ball_rect(game_window), own_paddle.get_paddle_rect()):
             ball.collision()

@@ -19,8 +19,12 @@ class Ball:
     def update(self, window_size):
         if self.x <= 0 - self.size:
             self.reset()
+            scored = "own"
         elif self.x >= window_size[0] + self.size:
             self.reset()
+            scored = "enemy"
+        else:
+            scored = None
 
         if self.y <= 0 + self.size:
             self.y_dir = 1
@@ -29,6 +33,8 @@ class Ball:
 
         self.x += self.speed * self.x_dir
         self.y += self.speed * self.y_dir
+        
+        return scored
 
     def draw_ball(self, game_window):
         pygame.draw.circle(game_window, self.color,
