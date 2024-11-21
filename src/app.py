@@ -56,9 +56,9 @@ def main():
             elif scored == "enemy":
                 enemy_score += 1
 
-        if pygame.Rect.colliderect(ball.get_ball_rect(game_window), own_paddle.get_paddle_rect()):
+        if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
             ball.collision()
-        if pygame.Rect.colliderect(ball.get_ball_rect(game_window), enemy_paddle.get_paddle_rect()):
+        if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
             ball.collision()
 
         own_paddle.display_paddle(game_window)

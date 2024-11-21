@@ -28,21 +28,20 @@ class Ball:
 
         if self.y <= 0 + self.size:
             self.y_dir = 1
-        if self.y >= window_size[1] - self.size:
+        elif self.y >= window_size[1] - self.size:
             self.y_dir = -1
 
         self.x += self.speed * self.x_dir
         self.y += self.speed * self.y_dir
-        
+
         return scored
 
     def draw_ball(self, game_window):
         pygame.draw.circle(game_window, self.color,
                            (self.x, self.y), self.size)
 
-    def get_ball_rect(self, game_window):
-        return pygame.draw.circle(game_window, self.color,
-                           (self.x, self.y), self.size)
+    def get_ball_rect(self):
+        return pygame.Rect(self.x - self.size, self.y - self.size, self.size * 2, self.size * 2)
 
     def collision(self):
         self.x_dir *= -1
