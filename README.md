@@ -55,5 +55,5 @@ poetry run invoke coverage-report
 Pylint code quality report:
 
 ```bash
-poetry run invoke liny
+poetry run invoke lint
 ```
