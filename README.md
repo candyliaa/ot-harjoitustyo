@@ -2,6 +2,16 @@
 
 The app is a version of the game Pong, but with additional (perhaps even silly) game modifiers the user can control.
 
+## Documentation
+
+[Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
+
+[Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
+
+[Changelog](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+
+[App architecture](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
 ## Installation instructions
 
 1. Clone the repository to your machine:
@@ -47,13 +57,3 @@ Pylint code quality report:
 ```bash
 poetry run invoke liny
 ```
-
-## Documentation
-
-[Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
-
-[Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
-
-[Changelog](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
-
-[App architecture](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
