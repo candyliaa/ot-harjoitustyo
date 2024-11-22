@@ -42,6 +42,12 @@ Test coverage report:
 poetry run invoke coverage-report
 ```
 
+Pylint code quality report:
+
+```bash
+poetry run invoke liny
+```
+
 ## Documentation
 
 [Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
