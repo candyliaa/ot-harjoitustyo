@@ -4,7 +4,7 @@ The app is a version of the game Pong, where the user can configure settings suc
 ## Users
 Users can enter a username to have their total number of points saved (perhaps in a text file or an online service, such as a Google Sheets file?)
 ## Basic functionality
-- Users can launch the game and play a basic version of Pong
+- Users can launch the game and play a basic version of Pong ✅
 	- Settings are configured on the command line, after which the game launches
 		- Config file is saved so that this can be skipped
 - Users can pause the game 
