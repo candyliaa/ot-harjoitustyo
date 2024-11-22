@@ -49,3 +49,5 @@ poetry run invoke coverage-report
 [Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
 
 [Changelog](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+
+[App architecture](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
