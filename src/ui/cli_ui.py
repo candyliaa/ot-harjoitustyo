@@ -9,8 +9,9 @@ class Stats:
         # Implement database and fetch stats...
 
 class Settings:
-    def __init__(self):
+    def __init__(self, config):
         self._io = ConsoleIO
+        self.config = config
         self._settings_menu_commands = {
             "1": "1. Change ball speed (default 15)",
             "2": "2. Change ball color",
@@ -68,12 +69,13 @@ class Settings:
         self._io.print("1. Change ball speed (default 15)\n2. Change ball color\n3. Change paddle speed\n4. Change paddle color\n5. Change AI difficulty\n6. Save and exit")
 
 class PongCLI:
-    def __init__(self):
+    def __init__(self, config):
         self._io = ConsoleIO
+        self.config = config
         self._start_menu_commands = {
             "1": "1. Start game",
             "2": Stats(),
-            "3": Settings(),
+            "3": Settings(config),
             "4": "4. Quit",
         }
 
@@ -85,8 +87,11 @@ class PongCLI:
             command = self._io.read("")
             if not command in self._start_menu_commands:
                 continue
+
+            if command == "1":
+                return True
             if command == "4":
-                break
+                return False
 
             command_object = self._start_menu_commands[command]
             command_object.execute()

@@ -4,11 +4,12 @@ from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
 from config import Config
+from ui.cli_ui import PongCLI
 
 class Game:
     """Main class for running the game."""
-    def __init__(self):
-        self.config = Config()
+    def __init__(self, config):
+        self.config = config
         # Initialize starting variables
         self.running = True
 
@@ -118,7 +119,16 @@ class Game:
             ball.collision(enemy_paddle)
             return True
         return False
+    
+def main():
+    config = Config()
+    cli = PongCLI(config)
+    start = cli.start()
+    if start:
+        pong_game = Game(config)
+        pong_game.start_game()
+    else:
+        return
 
 if __name__ == "__main__":
-    pong_game = Game()
-    pong_game.start_game()
+    main()
