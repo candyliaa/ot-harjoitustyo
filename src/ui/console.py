@@ -3,7 +3,7 @@ class ConsoleIO:
         pass
 
     def read(self, input_str):
-        return str(input(input_str))
-        
+        return input(input_str)
+
     def print(self, input_str):
         print(input_str)

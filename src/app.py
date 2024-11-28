@@ -45,6 +45,7 @@ class Game:
             for event in pygame.event.get():
                 if not self.keep_running(event):
                     self.running = False
+                    return False
 
             self.own_movement = self.get_input()
 
@@ -126,7 +127,9 @@ def main():
     start = cli.start()
     if start:
         pong_game = Game(config)
-        pong_game.start_game()
+        running = pong_game.start_game()
+        if not running:
+            return
     else:
         return
 
