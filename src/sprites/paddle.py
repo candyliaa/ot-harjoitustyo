@@ -3,7 +3,7 @@ import pygame
 
 class Paddle:
     """Paddle object for the pong game."""
-    def __init__(self, pos, speed=10, color=(0, 255, 0), size=300):
+    def __init__(self, pos, speed, color, size):
         self.x = pos[0]
         self.y = pos[1]
         self.size = size

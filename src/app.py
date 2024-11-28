@@ -3,18 +3,19 @@ import pygame
 from sprites.ball import Ball
 from sprites.paddle import Paddle
 from sprites.colors import color_dict
-from config import window_size, DIFFICULTY, FPS
+from config import Config
 
 class Game:
     """Main class for running the game."""
     def __init__(self):
+        self.config = Config()
         # Initialize starting variables
         self.running = True
 
         self.own_score = 0
         self.enemy_score = 0
 
-        self.game_window = pygame.display.set_mode(window_size)
+        self.game_window = pygame.display.set_mode(self.config.window_size)
 
         pygame.init()
 
@@ -28,12 +29,12 @@ class Game:
         pygame.display.set_caption("Pong!")
         self.game_window.fill(color_dict["black"])
 
-        self.ball = Ball((window_size[0]//2, window_size[1]//2))
+        self.ball = Ball((self.config.window_size[0]//2, self.config.window_size[1]//2), self.config.ball_speed, self.config.ball_color, self.config.ball_size)
 
         self.own_paddle = Paddle(
-            (window_size[0]-100, window_size[1]//2))
+            (self.config.window_size[0]-100, self.config.window_size[1]//2), self.config.paddle_speed, self.config.paddle_color, self.config.paddle_size)
         self.enemy_paddle = Paddle(
-            (50, window_size[1]//2))
+            (50, self.config.window_size[1]//2), self.config.paddle_speed, self.config.paddle_color, self.config.paddle_size)
 
         self.own_movement = 0
         self.enemy_movement = 0
@@ -46,12 +47,12 @@ class Game:
 
             self.own_movement = self.get_input()
 
-            if random.random() < DIFFICULTY:
+            if random.random() < self.config.difficulty:
                 self.enemy_movement = self.enemy_movement_logic(self.enemy_paddle, self.ball)
 
-            scored = self.ball.update(window_size)
-            self.own_paddle.update(window_size, self.own_movement)
-            self.enemy_paddle.update(window_size, self.enemy_movement)
+            scored = self.ball.update(self.config.window_size)
+            self.own_paddle.update(self.config.window_size, self.own_movement)
+            self.enemy_paddle.update(self.config.window_size, self.enemy_movement)
 
             self.enemy_movement = 0
 
@@ -71,7 +72,7 @@ class Game:
 
             self.game_window.blit(
                 self.font.render(
-                    f"Points: {self.own_score}", False, color_dict["white"]), (window_size[0] - 125, 10)
+                    f"Points: {self.own_score}", False, color_dict["white"]), (self.config.window_size[0] - 125, 10)
                 )
 
             self.game_window.blit(
@@ -80,7 +81,7 @@ class Game:
 
             pygame.display.update()
             self.game_window.fill(color_dict["black"])
-            self.clock.tick(FPS)
+            self.clock.tick(self.config.fps)
 
             if self.collision_timeout > 0:
                 self.collision_timeout -= 1

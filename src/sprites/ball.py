@@ -2,7 +2,7 @@ import pygame
 
 class Ball:
     """Ball object for the pong game."""
-    def __init__(self, pos, speed=15, color=(255, 255, 255), size=10):
+    def __init__(self, pos, speed, color, size):
         self.__initial_x = pos[0]
         self.__initial_y = pos[1]
 
