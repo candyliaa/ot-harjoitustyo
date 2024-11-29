@@ -127,8 +127,8 @@ class Settings:
         self._io.print("\nSetting successfully changed!")
 
 class PongCLI:
-    def __init__(self, config):
-        self._io = ConsoleIO()
+    def __init__(self, config, io):
+        self._io = io
         self.config = config
         self._start_menu_commands = {
             "1": "1. Start game",
@@ -139,7 +139,7 @@ class PongCLI:
 
     def start(self):
         self._io.print("Welcome to Pong!")
-        
+        self.start_game = False
         while True:
             self.start_menu_instructions()
             command = str(self._io.read("Input command: "))
@@ -148,9 +148,11 @@ class PongCLI:
                 continue
 
             if command == "1":
-                return True
+                self.start_game = True
+                return self.start_game
             if command == "4":
-                return False
+                self.start_game = False
+                return self.start_game
 
             command_object = self._start_menu_commands[command]
             command_object.execute()
