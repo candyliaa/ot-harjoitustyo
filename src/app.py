@@ -5,6 +5,7 @@ from sprites.paddle import Paddle
 from sprites.colors import color_dict
 from config import Config
 from ui.cli_ui import PongCLI
+from ui.console import ConsoleIO
 
 class Game:
     """Main class for running the game."""
@@ -123,7 +124,8 @@ class Game:
     
 def main():
     config = Config()
-    cli = PongCLI(config)
+    io = ConsoleIO()
+    cli = PongCLI(config, io)
     start = cli.start()
     if start:
         pong_game = Game(config)
