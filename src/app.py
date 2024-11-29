@@ -31,12 +31,24 @@ class Game:
         pygame.display.set_caption("Pong!")
         self.game_window.fill(color_dict["black"])
 
-        self.ball = Ball((self.config.window_size[0]//2, self.config.window_size[1]//2), self.config.ball_speed, self.config.ball_color, self.config.ball_size)
+        self.ball = Ball((self.config.window_size[0]//2,
+                          self.config.window_size[1]//2),
+                          self.config.ball_speed,
+                          self.config.ball_color,
+                          self.config.ball_size)
 
         self.own_paddle = Paddle(
-            (self.config.window_size[0]-100, self.config.window_size[1]//2), self.config.paddle_speed, self.config.paddle_color, self.config.paddle_size)
+            (self.config.window_size[0]-100,
+             self.config.window_size[1]//2),
+             self.config.paddle_speed,
+             self.config.paddle_color,
+             self.config.paddle_size)
         self.enemy_paddle = Paddle(
-            (50, self.config.window_size[1]//2), self.config.paddle_speed, self.config.paddle_color, self.config.paddle_size)
+            (50,
+             self.config.window_size[1]//2),
+             self.config.paddle_speed,
+             self.config.paddle_color,
+             self.config.paddle_size)
 
         self.own_movement = 0
         self.enemy_movement = 0
@@ -46,7 +58,7 @@ class Game:
             for event in pygame.event.get():
                 if not self.keep_running(event):
                     self.running = False
-                    return False
+                    return
 
             self.own_movement = self.get_input()
 
@@ -75,11 +87,20 @@ class Game:
 
             self.game_window.blit(
                 self.font.render(
-                    f"Points: {self.own_score}", False, color_dict["white"]), (self.config.window_size[0] - 125, 10)
+                    f"Points: {self.own_score}",
+                    False,
+                    color_dict["white"]
+                    ),
+                (self.config.window_size[0] - 125, 10)
                 )
 
             self.game_window.blit(
-                self.font.render(f"Points: {self.enemy_score}", False, color_dict["white"]), (25, 10)
+                self.font.render(
+                    f"Points: {self.enemy_score}",
+                    False,
+                    color_dict["white"]
+                    ),
+                (25, 10)
                 )
 
             pygame.display.update()
@@ -121,7 +142,7 @@ class Game:
             ball.collision(enemy_paddle)
             return True
         return False
-    
+
 def main():
     config = Config()
     io = ConsoleIO()
@@ -129,11 +150,7 @@ def main():
     start = cli.start()
     if start:
         pong_game = Game(config)
-        running = pong_game.start_game()
-        if not running:
-            return
-    else:
-        return
+        pong_game.start_game()
 
 if __name__ == "__main__":
     main()

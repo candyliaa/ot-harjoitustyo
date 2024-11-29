@@ -14,8 +14,7 @@ class Paddle:
     def update(self, window_size, movement=0):
         """Logic for moving a paddle."""
         self.y += self.speed * movement
-        if self.y <= 0:
-            self.y = 0
+        self.y = max(self.y, 0)
         if self.y + self.size >= window_size[1]:
             self.y = window_size[1] - self.size
 

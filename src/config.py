@@ -16,9 +16,9 @@ class Config:
     def __init__(self):
         self.difficulty = DIFFICULTY
         self.fps = FPS
-        
+
         self.window_size = WINDOW_SIZE
-    
+
         self.ball_color = color_dict["white"]
         self.ball_speed = BALL_SPEED
         self.ball_size = BALL_SIZE
