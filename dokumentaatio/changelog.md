@@ -12,3 +12,10 @@
 - Improved logic of classes Ball and Paddle by refactoring
 - Tests for ball movement added in `paddle_test.py` file
 - Refactored `app.py` to use a `Game` class
+
+## Week 5
+
+- Implemented CLI UI before launching the game itself
+  - This lets the user configure a variety of settings
+- Refactored code to accomodate for CLI
+- Config is saved to the `config.json` file
