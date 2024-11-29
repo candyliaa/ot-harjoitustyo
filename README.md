@@ -14,11 +14,13 @@ The app is a version of the game Pong, but with additional (perhaps even silly) 
 
 ## Installation instructions
 
-1. Clone the repository to your machine:
+1a. Clone the repository to your machine:
 
 ```bash
 git clone https://github.com/candyliaa/ot-harjoitustyo.git
 ```
+
+1b. Alternatively, download the latest release.
 
 2. In the root directory of the project, run
 
