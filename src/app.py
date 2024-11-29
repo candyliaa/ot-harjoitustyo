@@ -144,10 +144,11 @@ class Game:
         return False
 
 def main():
-    config = Config()
+    config = Config.read()
     io = ConsoleIO()
     cli = PongCLI(config, io)
     start = cli.start()
+    config.write()
     if start:
         pong_game = Game(config)
         pong_game.start_game()
