@@ -2,16 +2,16 @@ from ui.console import ConsoleIO
 from sprites.colors import color_dict
 
 class Stats:
-    def __init__(self):
-        self._io = ConsoleIO()
+    def __init__(self, io):
+        self._io = io
 
     def execute(self):
         self._io.print("\nStats page")
         self._io.print("Sorry, not implemented yet! Check back later :)")
 
 class Settings:
-    def __init__(self, config):
-        self._io = ConsoleIO()
+    def __init__(self, config, io):
+        self._io = io
         self.config = config
         self._settings_menu_commands = {
             "1": "1. Change ball speed (default 15)",
@@ -37,19 +37,19 @@ class Settings:
             self._io.print("Invalid color!")
             return
         if new_color == "1":
-            self.config.paddle_color = color_dict["red"]
+            self.config.ball_color = color_dict["red"]
         elif new_color == "2":
-            self.config.paddle_color = color_dict["green"]
+            self.config.ball_color = color_dict["green"]
         elif new_color == "3":
-            self.config.paddle_color = color_dict["blue"]
+            self.config.ball_color = color_dict["blue"]
         elif new_color == "4":
-            self.config.paddle_color = color_dict["yellow"]
+            self.config.ball_color = color_dict["yellow"]
         elif new_color == "5":
-            self.config.paddle_color = color_dict["magenta"]
-        self.print_successful_change
+            self.config.ball_color = color_dict["magenta"]
+        self.print_successful_change()
 
     def change_paddle_speed(self):
-        new_speed = self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): ")
+        new_speed = int(self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): "))
         if new_speed < 1 or new_speed > 30:
             self._io.print("Speed value too small or too big!")
             return
@@ -111,7 +111,7 @@ class Settings:
                 self.change_paddle_speed()
 
             elif command == "4":
-                self.change_paddle_color
+                self.change_paddle_color()
 
             elif command == "5":
                 self.change_difficulty()
@@ -132,8 +132,8 @@ class PongCLI:
         self.config = config
         self._start_menu_commands = {
             "1": "1. Start game",
-            "2": Stats(),
-            "3": Settings(config),
+            "2": Stats(io),
+            "3": Settings(config, io),
             "4": "4. Quit",
         }
 
