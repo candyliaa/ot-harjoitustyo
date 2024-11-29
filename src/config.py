@@ -1,5 +1,5 @@
-from sprites.colors import color_dict
 import json
+from sprites.colors import color_dict
 
 WINDOW_SIZE = (1280, 1024)
 
@@ -29,12 +29,12 @@ class Config:
         self.paddle_size = PADDLE_SIZE
 
     def write(self):
-        with open("config.json", "w") as f:
+        with open("config.json", "w", encoding="utf-8") as f:
             json.dump(vars(self), f)
 
     @staticmethod
     def read():
-        with open("config.json", "r") as f:
+        with open("config.json", "r", encoding="utf-8") as f:
             json_object = json.load(f)
 
         config = Config()
