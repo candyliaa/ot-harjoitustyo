@@ -14,12 +14,12 @@ def drop_tables(connection):
     connection.commit()
 
 def create_tables(connection):
-    cursor = connection.cursor
+    cursor = connection.cursor()
 
     cursor.execute("""
                    create table scores (
-                   id serial primary key
-                   scored int not null
+                   id serial primary key,
+                   scored int not null,
                    scored_on int not null
                    );
                    """)
