@@ -1,7 +1,6 @@
 .pytest_cache
 htmlcov
 .venv 
-.env
 __pycache__
 *.log
 log.html
