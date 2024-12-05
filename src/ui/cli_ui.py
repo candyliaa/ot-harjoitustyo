@@ -29,7 +29,9 @@ class Stats:
                     self._io.print(f"{score[0] : >10}{score[1] : ^20}{score[2] : >10}")
 
             elif command == "2":
-                continue
+                misc_stats = self._stat_repo.get_misc_stats()
+                self._io.print(f"{'Ball bounces' : <15}{'Own travel distance' : ^20}{'Enemy travel distance' : >20}")
+                self._io.print(f"{misc_stats[0][0] : <15}{misc_stats[0][1] : ^20}{misc_stats[0][2] : >20}")
     
             elif command == "3":
                 self._io.print("Returning to main menu...\n")

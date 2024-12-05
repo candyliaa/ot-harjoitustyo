@@ -28,7 +28,7 @@ class StatsRepository:
                        """)
         
         values = cursor.fetchall()
-        return values
+        return [(value["total_bounces"], value["total_own_paddle"], value["total_enemy_paddle"]) for value in values]
     
     def write_misc_stats(self, bounces, own_traveled, enemy_traveled):
         cursor = self._connection.cursor()
