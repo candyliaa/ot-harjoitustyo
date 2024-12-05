@@ -10,6 +10,7 @@ python = "^3.10"
 invoke = "^2.2.0"
 pygame = "^2.6.1"
 rich = "^13.9.4"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
