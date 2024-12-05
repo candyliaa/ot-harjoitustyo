@@ -24,9 +24,9 @@ class Stats:
 
             elif command == "1":
                 scores = self._stat_repo.get_scores()
-                self._io.print("Session no.  Own score    Enemy score")
+                self._io.print("Session no.    Own score    Enemy score")
                 for score in scores:
-                    self._io.print(score[0] + "  " + score[1] + "    " + score[2])
+                    self._io.print(f"{score[0]}    {score[1]}    {score[2]}")
 
             elif command == "2":
                 continue
@@ -168,11 +168,11 @@ class PongCLI:
         }
 
     def start(self):
-        self._io.print("Welcome to Pong!")
+        self._io.print("\nWelcome to Pong!")
         self.start_game = False
         while True:
             self.start_menu_instructions()
-            command = str(self._io.read("Input command: "))
+            command = str(self._io.read("\nInput command: "))
             if not command in self._start_menu_commands:
                 self._io.print("Invalid command!")
                 continue

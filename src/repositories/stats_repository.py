@@ -9,9 +9,10 @@ class StatsRepository:
 
         rows = cursor.fetchall()
 
-        return [(row["id"], row["scored"], row["scored_on"]) for row in rows]
+        return [(row["session"], row["scored"], row["scored_on"]) for row in rows]
 
     def write_score(self, score, scored_on):
         cursor = self._connection.cursor()
 
         cursor.execute(f"insert into scores (scored, scored_on) values ({score}, {scored_on})")
+        self._connection.commit()

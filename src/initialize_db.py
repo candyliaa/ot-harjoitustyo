@@ -18,7 +18,7 @@ def create_tables(connection):
 
     cursor.execute("""
                    create table scores (
-                   id serial primary key,
+                   session integer primary key,
                    scored int not null,
                    scored_on int not null
                    );
