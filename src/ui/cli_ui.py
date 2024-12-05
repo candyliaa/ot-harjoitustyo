@@ -24,13 +24,13 @@ class Stats:
 
             elif command == "1":
                 scores = self._stat_repo.get_scores()
-                self._io.print("Session no.    Own score    Enemy score")
+                self._io.print(f"{'Session no.' : <15}{'Own score' : ^10}{'Enemy score' : >15}")
                 for score in scores:
-                    self._io.print(f"{score[0]}    {score[1]}    {score[2]}")
+                    self._io.print(f"{score[0] : >10}{score[1] : ^20}{score[2] : >10}")
 
             elif command == "2":
                 continue
-            
+    
             elif command == "3":
                 self._io.print("Returning to main menu...\n")
                 break
@@ -103,7 +103,7 @@ class Settings:
             self.config.paddle_color = color_dict["yellow"]
         elif new_color == "5":
             self.config.paddle_color = color_dict["magenta"]
-    
+
     def change_difficulty(self):
         self._io.print("1. Easy\n2. Medium (default)\n3. Hard\n4. Impossible")
         new_difficulty = self._io.read("\nInput new difficulty: ")
