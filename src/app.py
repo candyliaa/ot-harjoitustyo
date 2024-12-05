@@ -6,6 +6,8 @@ from sprites.colors import color_dict
 from config import Config
 from ui.cli_ui import PongCLI
 from ui.console import ConsoleIO
+from repositories.stats_repository import StatsRepository
+from db_connection import get_database_connection
 
 class Game:
     """Main class for running the game."""
@@ -146,12 +148,15 @@ class Game:
 def main():
     config = Config.read()
     io = ConsoleIO()
-    cli = PongCLI(config, io)
+    connection = get_database_connection()
+    stats = StatsRepository(connection)
+    cli = PongCLI(config, io, stats)
     start = cli.start()
     config.write()
     if start:
         pong_game = Game(config)
         pong_game.start_game()
-
+        stats.write_score(pong_game.own_score, pong_game.enemy_score)
+        return
 if __name__ == "__main__":
     main()

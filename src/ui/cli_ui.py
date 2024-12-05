@@ -2,12 +2,43 @@ from ui.console import ConsoleIO
 from sprites.colors import color_dict
 
 class Stats:
-    def __init__(self, io):
+    def __init__(self, io, stat_repo):
         self._io = io
+        self._stat_repo = stat_repo
+        self._stats_menu_commands = {
+            "1": "1. View score stats",
+            "2": "2. View misc. stats",
+            "3": "3. Main Menu"
+        }
 
     def execute(self):
         self._io.print("\nStats page")
-        self._io.print("Sorry, not implemented yet! Check back later :)")
+
+        while True:
+            self.print_instructions()
+            command = input("\nInput command: ")
+
+            if command not in self._stats_menu_commands.keys():
+                self._io.print("Invalid command!")
+                continue
+
+            elif command == "1":
+                scores = self._stat_repo.get_scores()
+                self._io.print("Session no.  Own score    Enemy score")
+                for score in scores:
+                    self._io.print(score[0] + "  " + score[1] + "    " + score[2])
+
+            elif command == "2":
+                continue
+            
+            elif command == "3":
+                self._io.print("Returning to main menu...\n")
+                break
+
+    def print_instructions(self):
+        self._io.print("\n")
+        for instruction in self._stats_menu_commands.values():
+            self._io.print(instruction)
 
 class Settings:
     def __init__(self, config, io):
@@ -98,7 +129,6 @@ class Settings:
 
             if not command in self._settings_menu_commands:
                 self._io.print("Invalid command!")
-                self.print_instructions()
                 continue
 
             if command == "1":
@@ -127,12 +157,12 @@ class Settings:
         self._io.print("\nSetting successfully changed!")
 
 class PongCLI:
-    def __init__(self, config, io):
+    def __init__(self, config, io, stats):
         self._io = io
         self.config = config
         self._start_menu_commands = {
             "1": "1. Start game",
-            "2": Stats(io),
+            "2": Stats(io, stats),
             "3": Settings(config, io),
             "4": "4. Quit",
         }
