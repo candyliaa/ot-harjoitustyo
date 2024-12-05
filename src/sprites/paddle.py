@@ -10,10 +10,12 @@ class Paddle:
         self.speed = speed
         self.color = color
         self.width = 40
+        self.traveled = 0
 
     def update(self, window_size, movement=0):
         """Logic for moving a paddle."""
         self.y += self.speed * movement
+        self.traveled += abs(self.speed * movement)
         self.y = max(self.y, 0)
         if self.y + self.size >= window_size[1]:
             self.y = window_size[1] - self.size

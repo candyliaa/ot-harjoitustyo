@@ -27,6 +27,7 @@ class Ball:
 
         if self.position.y <= 0 + self.size or self.position.y >= window_size[1] - self.size:
             self.direction.y = -self.direction.y
+            scored = "bounce"
 
         self.position += self.speed * self.direction
 

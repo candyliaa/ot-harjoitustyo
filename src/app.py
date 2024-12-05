@@ -19,6 +19,9 @@ class Game:
         self.own_score = 0
         self.enemy_score = 0
 
+        # Stats variables that are written to database
+        self.ball_bounces = 0
+
         self.game_window = pygame.display.set_mode(self.config.window_size)
 
         pygame.init()
@@ -78,6 +81,8 @@ class Game:
                     self.own_score += 1
                 elif scored == "enemy":
                     self.enemy_score += 1
+                elif scored == "bounce":
+                    self.ball_bounces += 1
 
             if self.collision_timeout == 0:
                 if self.paddle_collision(self.own_paddle, self.enemy_paddle, self.ball):
@@ -139,9 +144,11 @@ class Game:
     def paddle_collision(self, own_paddle, enemy_paddle, ball):
         if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
             ball.collision(own_paddle)
+            self.ball_bounces += 1
             return True
         if pygame.Rect.colliderect(ball.get_ball_rect(), enemy_paddle.get_paddle_rect()):
             ball.collision(enemy_paddle)
+            self.ball_bounces += 1
             return True
         return False
 
@@ -157,6 +164,7 @@ def main():
         pong_game = Game(config)
         pong_game.start_game()
         stats.write_score(pong_game.own_score, pong_game.enemy_score)
+        stats.write_misc_stats(pong_game.ball_bounces, pong_game.own_paddle.traveled, pong_game.enemy_paddle.traveled)
         return
 if __name__ == "__main__":
     main()

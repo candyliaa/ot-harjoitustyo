@@ -25,6 +25,16 @@ def create_tables(connection):
                    """)
     connection.commit()
 
+    cursor.execute("""
+                   create table misc (
+                   session integer primary key,
+                   ball_bounces int not null,
+                   own_paddle_traveled int not null,
+                   enemy_paddle_traveled int not null
+                   );
+                   """)
+    connection.commit()
+    
 def initialize():
     connection = get_database_connection()
 
