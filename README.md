@@ -42,6 +42,8 @@ poetry run invoke start
 
 ## CLI commands
 
+All of these should be ran in the root directory of the project (not in src!)
+
 Running the app:
 
 ```bash
