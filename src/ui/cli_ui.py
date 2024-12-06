@@ -48,7 +48,6 @@ class Stats:
                 break
 
     def print_instructions(self):
-        self._io.print("\n")
         for instruction in self._stats_menu_commands.values():
             self._io.print(instruction)
 
@@ -196,7 +195,7 @@ class Settings:
                 break
 
     def print_instructions(self):
-        self._io.print("\n1. Change ball speed (default 15)\n2. Change ball color\n3. Change paddle speed\n4. Change paddle color\n5. Change AI difficulty\n6. Save and exit")
+        self._io.print("\n1. Change ball speed (default 15)\n2. Change ball color\n3. Change paddle speed\n4. Change paddle color\n5. Change AI difficulty\n6. Change amount of balls\n7. Save and exit")
     
     def print_successful_change(self):
         self._io.print("\nSetting successfully changed!")
