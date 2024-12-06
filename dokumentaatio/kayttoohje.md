@@ -1,6 +1,6 @@
 # Usage instructions
 
-First, download the latest release (or follow the instructions in the `README` file).
+First, download the latest release.
 
 ## Running the app
 
