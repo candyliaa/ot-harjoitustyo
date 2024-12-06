@@ -212,6 +212,5 @@ def main():
                                pong_game.own_paddle.traveled,
                                pong_game.enemy_paddle.traveled
                                )
-        return
 if __name__ == "__main__":
     main()
