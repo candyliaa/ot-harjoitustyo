@@ -14,6 +14,8 @@ BALL_SPEED = 15
 BALL_SIZE = 10
 
 class Config:
+    """Config class to hold all the configuration information for the game.
+    """
     def __init__(self):
         self.difficulty = DIFFICULTY
         self.fps = FPS
@@ -30,11 +32,18 @@ class Config:
         self.paddle_size = PADDLE_SIZE
 
     def write(self):
+        """A method to write the current configuration to a json file.
+        """
         with open("config.json", "w", encoding="utf-8") as f:
             json.dump(vars(self), f)
 
     @staticmethod
     def read():
+        """A method to read the saved configuration from a json file.
+
+        Returns:
+            config: Returns a config object with the data read from the json file.
+        """
         with open("config.json", "r", encoding="utf-8") as f:
             json_object = json.load(f)
 

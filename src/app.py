@@ -10,8 +10,16 @@ from repositories.stats_repository import StatsRepository
 from db_connection import get_database_connection
 
 class Game:
-    """Main class for running the game."""
+    """Main class for running the game.
+    Attributes:
+        config: The config object which the game uses.
+    """
     def __init__(self, config):
+        """The constructor of the class, which initializes the required variables.
+
+        Args:
+            config: The config object which the game uses.
+        """
         self.config = config
         # Initialize starting variables
         self.running = True
@@ -59,6 +67,8 @@ class Game:
         self.enemy_movement = 0
 
     def start_game(self):
+        """The game loop.
+        """
         while self.running:
             for event in pygame.event.get():
                 if not self.keep_running(event):
@@ -118,11 +128,24 @@ class Game:
                 self.collision_timeout -= 1
 
     def keep_running(self, event):
+        """Check if the game should close.
+
+        Args:
+            event: The event which is checked for if it's QUIT.
+
+        Returns:
+            Bool: Return the bool that decides if the game should continue running.
+        """
         if event.type == pygame.QUIT:
             return False
         return True
 
     def get_input(self):
+        """Check the player's input.
+
+        Returns:
+            An integer that decides if the player should move up, down or at all.
+        """
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             return -1
@@ -135,6 +158,15 @@ class Game:
         return 0
 
     def enemy_movement_logic(self, enemy_paddle, ball):
+        """Method to check which direction the enemy paddle should move in.
+
+        Args:
+            enemy_paddle: The enemy paddle object.
+            ball: The ball object.
+
+        Returns:
+            An integer that decides if the enemy should move up or down.
+        """
         if enemy_paddle.get_center().y < ball.position.y:
             return 1
         if enemy_paddle.get_center().y > ball.position.y:
@@ -142,6 +174,16 @@ class Game:
         return ball.direction.y
 
     def paddle_collision(self, own_paddle, enemy_paddle, ball):
+        """A method to detect if the ball has collided with either paddle.
+
+        Args:
+            own_paddle: The player's paddle object..
+            enemy_paddle: The enemy's paddle object..
+            ball: The ball object.
+
+        Returns:
+            A bool for if the ball hit a paddle.
+        """
         if pygame.Rect.colliderect(ball.get_ball_rect(), own_paddle.get_paddle_rect()):
             ball.collision(own_paddle)
             self.ball_bounces += 1
@@ -153,6 +195,8 @@ class Game:
         return False
 
 def main():
+    """The main function to run the app.
+    """
     config = Config.read()
     io = ConsoleIO()
     connection = get_database_connection()

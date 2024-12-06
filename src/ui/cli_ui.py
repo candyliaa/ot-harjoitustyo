@@ -2,7 +2,15 @@ from ui.console import ConsoleIO
 from sprites.colors import color_dict
 
 class Stats:
+    """The stats class to handle reading data from the database.
+    """
     def __init__(self, io, stat_repo):
+        """The constructor for the class which initializes required values.
+
+        Args:
+            io: The IO object used to read user inputs.
+            stat_repo: The object used to read from the database.
+        """
         self._io = io
         self._stat_repo = stat_repo
         self._stats_menu_commands = {
@@ -12,6 +20,8 @@ class Stats:
         }
 
     def execute(self):
+        """A loop to print relevant information on the cli to the user.
+        """
         self._io.print("\nStats page")
 
         while True:
@@ -43,7 +53,15 @@ class Stats:
             self._io.print(instruction)
 
 class Settings:
+    """The settings class to handle reading data from the database.
+    """
     def __init__(self, config, io):
+        """The constructor for the class that initializes required values.
+
+        Args:
+            config: The config object that the current config is read from and potentially changed.
+            io: The IO object to read user inputs.
+        """
         self._io = io
         self.config = config
         self._settings_menu_commands = {
@@ -57,6 +75,8 @@ class Settings:
         }
 
     def change_ball_speed(self):
+        """A method to update the config object's ball_speed attribute according to user input.
+        """
         new_speed = int(self._io.read("\nInput new speed value for ball (between 1 and 50, default 15): "))
         if new_speed < 1 or new_speed > 50:
             self._io.print("Speed value too small or too big!")
@@ -65,6 +85,8 @@ class Settings:
         self.print_successful_change()
 
     def change_ball_color(self):
+        """A method to update config object's ball_color attribute according to user input.
+        """
         self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta")
         new_color = self._io.read("Input new color for ball: ")
         if new_color not in ["1", "2", "3", "4", "5"]:
@@ -83,6 +105,8 @@ class Settings:
         self.print_successful_change()
 
     def change_paddle_speed(self):
+        """A method to update config object's paddle_speed attribute according to user input.
+        """
         new_speed = int(self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): "))
         if new_speed < 1 or new_speed > 30:
             self._io.print("Speed value too small or too big!")
@@ -91,6 +115,8 @@ class Settings:
         self.print_successful_change()
 
     def change_paddle_color(self):
+        """A method to update config object's paddle_color attribute according to user input.
+        """
         self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta")
         new_color = self._io.read("\nInput new color for paddles: ")
         if new_color not in ["1", "2", "3", "4", "5"]:
@@ -108,6 +134,8 @@ class Settings:
             self.config.paddle_color = color_dict["magenta"]
 
     def change_difficulty(self):
+        """A method to update config object's difficulty attribute according to user input.
+        """
         self._io.print("1. Easy\n2. Medium (default)\n3. Hard\n4. Impossible")
         new_difficulty = self._io.read("\nInput new difficulty: ")
         if new_difficulty not in ["1", "2", "3", "4"]:
@@ -124,6 +152,8 @@ class Settings:
         self.print_successful_change()
 
     def change_ball_amount(self):
+        """A method to update config object's ball_amount attribute according to user input.
+        """
         new_amount = self._io.read("\nInput amount of balls: (1 to 5)")
         if new_amount not in ["1", "2", "3", "4", "5"]:
             self._io.print("Invalid amount!")
@@ -131,6 +161,8 @@ class Settings:
         self.config.ball_amount = int(new_amount)
 
     def execute(self):
+        """A loop to interact on the cli with the user.
+        """
         self._io.print("\nSettings page")
         
         while True:
@@ -170,7 +202,16 @@ class Settings:
         self._io.print("\nSetting successfully changed!")
 
 class PongCLI:
+    """The class that displays main menu options upon launching the app.
+    """
     def __init__(self, config, io, stats):
+        """The constructor of the class that initializes required values.
+
+        Args:
+            config: The config object that is passed to the settings object.
+            io: The IO object used to read inputs from the user.
+            stats: The stats repository object used to read from and write to the database.
+        """
         self._io = io
         self.config = config
         self._start_menu_commands = {
@@ -181,6 +222,11 @@ class PongCLI:
         }
 
     def start(self):
+        """A loop to interact on the cli with the user.
+
+        Returns:
+            A bool according to which the app starts the game or quits out.
+        """
         self._io.print("\nWelcome to Pong!")
         self.start_game = False
         while True:
