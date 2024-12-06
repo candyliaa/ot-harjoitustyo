@@ -28,7 +28,13 @@ git clone https://github.com/candyliaa/ot-harjoitustyo.git
 poetry install
 ```
 
-3. Run the app with
+3. Build the database with
+
+```bash
+poetry run invoke build-db
+```
+
+4. Run the app with
 
 ```bash
 poetry run invoke start
