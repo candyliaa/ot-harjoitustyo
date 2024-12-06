@@ -9,8 +9,8 @@ The app is a version of the game Pong, where the user can configure settings suc
 - Users can launch the game and play a basic version of Pong ✅
   - Settings are configured on the command line, after which the game launches ✅
     - Config file is saved ✅
-- Stats are saved into a database
-  - The user can view their stats on the cli
+- Stats are saved into a database ✅
+  - The user can view their stats on the cli ✅
 
 ## Extra features
 
