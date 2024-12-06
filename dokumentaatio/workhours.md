@@ -4,5 +4,7 @@
 | 21.11 | 7     | implemented functional pong game     |
 | 22.11 | 3     | improved documentation, refactoring  |
 | 28.11 | 8     | implemented cli ui to configure game |
-| 22.11 | 3     | testing, documentation, debugging    |
-| total | 18    |                                      |
+| 29.11 | 3     | testing, documentation, debugging    |
+| 5.12  | 6     | implemented database to store stats  |
+| 6.12  | 3     | tests for database, documentation    |
+| total | 38    |                                      |
