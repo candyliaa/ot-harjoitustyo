@@ -17,5 +17,12 @@
 
 - Implemented CLI UI before launching the game itself
   - This lets the user configure a variety of settings
-- Refactored code to accomodate for CLI
+- Refactored code to accommodate for CLI
 - Config is saved to the `config.json` file
+
+## Week 6
+
+- Implemented database to store game stats in
+  - Also implemented a stats repository which reads from and writes to the database
+- Implemented the stats page of the CLI UI, which lets the user view stats in a neat format
+- Wrote tests for the database
