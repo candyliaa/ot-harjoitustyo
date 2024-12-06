@@ -42,7 +42,7 @@ def create_tables(connection):
                    );
                    """)
     connection.commit()
-    
+
 def initialize():
     """Initialize the database with the methods defined above.
     """

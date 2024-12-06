@@ -1,7 +1,7 @@
 class StatsRepository:
     def __init__(self, connection):
         self._connection = connection
-    
+
     def get_scores(self):
         cursor = self._connection.cursor()
 
@@ -26,7 +26,7 @@ class StatsRepository:
                        sum(enemy_paddle_traveled) as total_enemy_paddle
                        from misc
                        """)
-        
+
         values = cursor.fetchall()
         return values
 

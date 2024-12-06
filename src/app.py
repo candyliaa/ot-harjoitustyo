@@ -208,7 +208,10 @@ def main():
         pong_game = Game(config)
         pong_game.start_game()
         stats.write_score(pong_game.own_score, pong_game.enemy_score)
-        stats.write_misc_stats(pong_game.ball_bounces, pong_game.own_paddle.traveled, pong_game.enemy_paddle.traveled)
+        stats.write_misc_stats(pong_game.ball_bounces,
+                               pong_game.own_paddle.traveled,
+                               pong_game.enemy_paddle.traveled
+                               )
         return
 if __name__ == "__main__":
     main()
