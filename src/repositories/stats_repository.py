@@ -9,7 +9,7 @@ class StatsRepository:
 
         rows = cursor.fetchall()
 
-        return [(row["session"], row["scored"], row["scored_on"]) for row in rows]
+        return rows
 
     def write_score(self, score, scored_on):
         cursor = self._connection.cursor()
@@ -28,8 +28,8 @@ class StatsRepository:
                        """)
         
         values = cursor.fetchall()
-        return [(value["total_bounces"], value["total_own_paddle"], value["total_enemy_paddle"]) for value in values]
-    
+        return values
+
     def write_misc_stats(self, bounces, own_traveled, enemy_traveled):
         cursor = self._connection.cursor()
 
