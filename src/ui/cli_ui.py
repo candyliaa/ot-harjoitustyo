@@ -51,8 +51,9 @@ class Settings:
             "2": "2. Change ball color",
             "3": "3. Change paddle speed",
             "4": "4. Change paddle color",
-            "5": "Change AI difficulty",
-            "6": "Save and exit"
+            "5": "5. Change AI difficulty",
+            "6": "6. Change amount of balls",
+            "7": "7. Save and exit"
         }
 
     def change_ball_speed(self):
@@ -122,6 +123,13 @@ class Settings:
             self.config.difficulty = 1
         self.print_successful_change()
 
+    def change_ball_amount(self):
+        new_amount = self._io.read("\nInput amount of balls: (1 to 5)")
+        if new_amount not in ["1", "2", "3", "4", "5"]:
+            self._io.print("Invalid amount!")
+            return
+        self.config.ball_amount = int(new_amount)
+
     def execute(self):
         self._io.print("\nSettings page")
         
@@ -149,6 +157,9 @@ class Settings:
                 self.change_difficulty()
 
             elif command == "6":
+                self.change_ball_amount()
+
+            elif command == "7":
                 self._io.print("Settings saved!")
                 break
 

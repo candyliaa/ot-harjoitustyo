@@ -23,6 +23,7 @@ class Config:
         self.ball_color = color_dict["white"]
         self.ball_speed = BALL_SPEED
         self.ball_size = BALL_SIZE
+        self.ball_amount = 1
 
         self.paddle_color = color_dict["green"]
         self.paddle_speed = PADDLE_SPEED
@@ -45,6 +46,7 @@ class Config:
         config.ball_color = json_object["ball_color"]
         config.ball_speed = json_object["ball_speed"]
         config.ball_size = json_object["ball_size"]
+        config.ball_amount = json_object["ball_amount"]
 
         config.paddle_color = json_object["paddle_color"]
         config.paddle_speed = json_object["paddle_speed"]
