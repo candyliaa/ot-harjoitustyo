@@ -4,6 +4,11 @@ The application is largely covered by unittests and manual tests to ensure it wo
 
 ## Unittests
 
+### Coverage
+![image](https://github.com/user-attachments/assets/7999ff75-3a04-474b-a250-2250f4d7f40d)
+
+The branch coverage of the tests is 93%, leaving out `app.py` and `cli_ui.py` (and various other files such as `config.py` for which tests don't really matter), as they constitute the UI of the application.
+
 ### Settings
 
 All possible settings options are tested with unittests, and invalid inputs are also covered. This is done in `settings_test.py` with the `TestSettings` class. To do this, there's also a `MockIO` class present which is used to simulate inputs on the CLI to test the wanted features.
