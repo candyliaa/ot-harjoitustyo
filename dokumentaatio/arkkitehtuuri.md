@@ -23,7 +23,19 @@ Some examples of those components include:
 - The `sprites` directory which contains the relevant files and classes required for a game of Pong, those being `paddle.py` and `ball.py`.
   Only `stats_repository.py` accesses the database, other files simply use the functions provided by the `StatsRepository` class within `stats_repository.py`.
 
-## Main features
+## Features and sequence diagram
+![image](https://github.com/user-attachments/assets/973c705c-69b6-4c29-88ad-bc42b4e3e47f)
+The sequence of events for when the user launches the application on the cli are represented in the sequence diagram above.
+- The user first runs `poetry run invoke start`, which then makes the `main` function initialize the required values and objects:
+  - `config` to use the saved configuration
+  - `io` which is used to read and print inputs
+  - `connection` to connect to the database
+  - `stats` to initialize a `StatsRepository` object, to perform database operations
+  - `cli` to launch the command line part of the application
+    - This lets the user configure the application, view stats, quit out or launch the game
+  - `start` is `True` when the user launches the game from the CLI, at which point the game is initialized
+  - `pong_game` which is the Pygame game object
+  - After the user closes the game, `stats` writes the new data to the database, after which the application closes out completely
 
 ## Saving data
 
