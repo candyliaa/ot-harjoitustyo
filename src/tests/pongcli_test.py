@@ -1,7 +1,6 @@
 import unittest
 from ui.cli_ui import PongCLI
 from config import Config
-from ui.console import ConsoleIO
 
 class MockIO():
     def __init__(self, inputs):

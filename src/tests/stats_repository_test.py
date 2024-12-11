@@ -1,33 +1,13 @@
 import unittest
 import sqlite3
 from repositories.stats_repository import StatsRepository
+from initialize_db import create_tables, drop_tables
 
 class TestStatsRepository(unittest.TestCase):
     def setUp(self):
         self.connection = sqlite3.connect(":memory:")
         self.stats = StatsRepository(self.connection)
-        self.cursor = self.connection.cursor()
-
-        self.cursor.execute("""
-                    create table scores (
-                    session integer primary key,
-                    scored int not null,
-                    scored_on int not null
-                    );
-                    """)
-        self.connection.commit()
-
-        self.cursor.execute("""
-                    create table misc (
-                    session integer primary key,
-                    ball_bounces int not null,
-                    own_paddle_traveled int not null,
-                    enemy_paddle_traveled int not null
-                    );
-                    """)
-        self.connection.commit()
-
-
+        create_tables(self.connection)
 
     def test_scores_written_correctly(self):
         self.stats.write_score(1, 2)
@@ -38,3 +18,23 @@ class TestStatsRepository(unittest.TestCase):
         self.stats.write_misc_stats(10, 1000, 1500)
         misc = self.stats.get_misc_stats()
         self.assertEqual(misc, [(10, 1000, 1500)])
+
+    def test_scores_table_dropped(self):
+        drop_tables(self.connection)
+        self.cursor = self.connection.cursor()
+
+        self.cursor.execute("""
+                            select 1 from sqlite_master where type='table' and name='scores';
+                            """)
+        scores = self.cursor.fetchall()
+        self.assertEqual([], scores)
+
+    def test_misc_table_dropped(self):
+        drop_tables(self.connection)
+        self.cursor = self.connection.cursor()
+
+        self.cursor.execute("""
+                            select 1 from sqlite_master where type='table' and name='misc';
+                            """)
+        misc = self.cursor.fetchall()
+        self.assertEqual([], misc)
