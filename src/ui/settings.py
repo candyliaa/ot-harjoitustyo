@@ -43,7 +43,7 @@ class Settings:
             self._io.print("\n[red][!] Input is not a number! Returning to settings menu...[/red]\n")
             return
         if new_speed < 1 or new_speed > 50:
-            self.print_invalid_option()
+            self.print_invalid_option("Number too small or too big")
             return
         self._config.ball_speed = new_speed
         self.print_successful_change()
