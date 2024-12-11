@@ -10,6 +10,8 @@ The app is a version of the game Pong, but with additional (perhaps even silly) 
 
 [Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
 
+[Testing document](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/testaus.md)
+
 [Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
 
 [Changelog](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
