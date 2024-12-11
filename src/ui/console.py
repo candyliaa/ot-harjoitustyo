@@ -1,3 +1,5 @@
+from rich import print
+
 class ConsoleIO:
     def __init__(self):
         pass
