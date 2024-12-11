@@ -26,3 +26,14 @@
   - Also implemented a stats repository which reads from and writes to the database
 - Implemented the stats page of the CLI UI, which lets the user view stats in a neat format
 - Wrote tests for the database
+
+## Week 7
+
+- Implemented the option to add multiple balls to the game
+- Made the CLI look nicer with proper linebreaks, error messages and the usage of the Rich library
+  - Multiple things are color-coded
+  - Stats can be viewed in a neat table
+- Wrote more tests for settings
+- Refactored code slightly by adding the `_` prefix to variables that only the respective class uses
+  - Also changed some game logic to account for multiple balls
+- Updated documentation

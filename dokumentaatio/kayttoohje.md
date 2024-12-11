@@ -1,6 +1,6 @@
 # Usage instructions
 
-First, download the latest release.
+First, download the latest [release](https://github.com/candyliaa/ot-harjoitustyo/releases).
 
 ## Running the app
 
@@ -28,14 +28,14 @@ poetry run invoke start
 
 Upon launching the application, it opens in a text-based UI.The main menu shows the possible options for the user. The user then has to input the corresponding number and hit the enter key to proceed.
 
-## Configuration
+## Playing the game
 
-The configuration of the game can be changed by accessing the Settings menu from the main menu, by inputting `3`. The user is then presented with a variety of options, and has to choose from them, and give updated values if the user wishes to.
+To launch the game and to start playing Pong, simply launch the application, and input `1` in the main menu. This opens the game window and lets the user control a paddle to bounce the ball off of.
 
 ## Stats
 
 To view stats for the game, the user can access the Stats menu from the main menu, by inputting `2`. The user is again presented with options to choose from, so that they can view the stats they wish to.
 
-## Playing the game
+## Configuration
 
-To launch the game and to start playing Pong, simply launch the application, and input `1` in the main menu. This opens the game window and lets the user control a paddle to bounce the ball off of.
+The configuration of the game can be changed by accessing the Settings menu from the main menu, by inputting `3`. The user is then presented with a variety of options, and has to choose from them, and give updated values if the user wishes to.
