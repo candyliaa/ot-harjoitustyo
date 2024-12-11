@@ -43,7 +43,7 @@ class Settings:
             self._io.print("\n[red][!] Input is not a number! Returning to settings menu...[/red]\n")
             return
         if new_speed < 1 or new_speed > 50:
-            self._io.print("\n[red][!] Speed value too small or too big![/red]\n")
+            self.print_invalid_option()
             return
         self._config.ball_speed = new_speed
         self.print_successful_change()
@@ -54,7 +54,7 @@ class Settings:
         self._io.print("[1] [red]Red[/red]\n[2] [green]Green[/green]\n[3] [blue]Blue[/blue]\n[4] [yellow]Yellow[/yellow]\n[5] [purple]Magenta[/purple]\n[6] [white]White[/white] (default)")
         new_color = self._io.read("\nInput new color for ball: ")
         if new_color not in ["1", "2", "3", "4", "5", "6"]:
-            self._io.print("\n[red][!] Invalid color![/red]\n")
+            self.print_invalid_option("Not an option")
             return
         if new_color == "1":
             self._config.ball_color = color_dict["red"]
@@ -76,10 +76,10 @@ class Settings:
         try:
             new_speed = int(self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): "))
         except:
-            self._io.print("\n[red][!] Input is not a number! Returning to settings menu...[/red]\n")
+            self.print_invalid_option("Input not a number")
             return
         if new_speed < 1 or new_speed > 30:
-            self._io.print("\n[red][!] Speed value too small or too big![/red]\n")
+            self.print_invalid_option("Number too small or too big")
             return
         self._config.paddle_speed = new_speed
         self.print_successful_change()
@@ -90,7 +90,7 @@ class Settings:
         self._io.print("[1] [red]Red[/red]\n[2] [blue]Blue[/blue]\n[3] [yellow]Yellow[/yellow]\n[4] [purple]Magenta[/purple]\n[5] [green]Green[/green] (default)")
         new_color = self._io.read("\nInput new color for paddles: ")
         if new_color not in ["1", "2", "3", "4", "5"]:
-            self._io.print("\n[red][!] Invalid color![/red]\n")
+            self.print_invalid_option("Not an option")
             return
         if new_color == "1":
             self._config.paddle_color = color_dict["red"]
@@ -109,7 +109,7 @@ class Settings:
         self._io.print("[1] [green]Easy[/green]\n[2] [yellow]Medium[/yellow] (default)\n[3] [orange]Hard[/orange]\n[4] [red]Impossible[/red]")
         new_difficulty = self._io.read("\nInput new difficulty: ")
         if new_difficulty not in ["1", "2", "3", "4"]:
-            self._io.print("\n[red][!] Invalid difficulty![/red]\n")
+            self.print_invalid_option("Not an option")
             return
         if new_difficulty == "1":
             self._config.difficulty = 0.4
@@ -127,10 +127,10 @@ class Settings:
         try:
             new_amount = int(self._io.read("\nInput amount of balls: (1 to 10)\n"))
         except:
-            self._io.print("\n[red][!] Input is not a number! Returning to settings menu...[/red]\n")
+            self.print_invalid_option("Not a number")
             return
         if new_amount not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-            self._io.print("\n[red][!] Invalid amount![/red]\n")
+            self.print_invalid_option("Not an option")
             return
         self._config.ball_amount = new_amount
         self.print_successful_change()
@@ -144,7 +144,7 @@ class Settings:
             command = self._io.read("\nInput command: ")
 
             if not command in self._settings_menu_commands:
-                self._io.print("\n[red][!] Invalid command![/red]\n")
+                self.print_invalid_command()
                 continue
 
             if command == "1":
@@ -177,3 +177,9 @@ class Settings:
     
     def print_successful_change(self):
         self._io.print("\n[green]Setting successfully changed![/green]\n[yellow][\] Change is seen on the CLI upon restart![/yellow]\n")
+
+    def print_invalid_command(self):
+        self._io.print("\n[red][!] Invalid command![/red]\n")
+
+    def print_invalid_option(self, invalid_part):
+        self._io.print(f"\n[red][!] {invalid_part}! Returning to settings menu...[/red]")
