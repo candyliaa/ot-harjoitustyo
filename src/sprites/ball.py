@@ -22,7 +22,7 @@ class Ball:
         self.speed = speed
         self._color = color
 
-        self._size = size
+        self.size = size
 
         self.collision_timeout = 0
 
@@ -37,16 +37,16 @@ class Ball:
         """
         self.position += self.speed * self.direction
 
-        if self.position.x <= 0 - self._size:
+        if self.position.x <= 0 - self.size:
             self.reset()
             scored = "own"
-        elif self.position.x >= window_size[0] + self._size:
+        elif self.position.x >= window_size[0] + self.size:
             self.reset()
             scored = "enemy"
         else:
             scored = None
 
-        if self.position.y <= 0 + self._size or self.position.y >= window_size[1] - self._size:
+        if self.position.y <= 0 + self.size or self.position.y >= window_size[1] - self.size:
             self.direction.y = -self.direction.y
             scored = "bounce"
 
@@ -59,7 +59,7 @@ class Ball:
             game_window: The pygame game window.
         """
         pygame.draw.circle(game_window, self._color,
-                           (self.position.x, self.position.y), self._size)
+                           (self.position.x, self.position.y), self.size)
 
     def get_ball_rect(self):
         """Method to return a rectangle of the ball used for collision detection.
@@ -68,7 +68,10 @@ class Ball:
             A pygame.Rect object that represents the ball's hitbox.
         """
         return pygame.Rect(
-            self.position.x - self._size, self.position.y - self._size, self._size * 2, self._size * 2
+            self.position.x - self.size,
+            self.position.y - self.size,
+            self.size * 2,
+            self.size * 2
             )
 
     def collision(self, paddle):
