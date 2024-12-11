@@ -87,7 +87,6 @@ class Game:
                 self._enemy_movement = self.enemy_movement_logic(self.enemy_paddle, closest_ball)
 
             for ball in self.balls:
-                ball.update(self.config.window_size)
                 scored = ball.update(self.config.window_size)
                 if scored:
                     if scored == "own":
