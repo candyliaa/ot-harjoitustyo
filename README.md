@@ -69,3 +69,9 @@ Pylint code quality report:
 ```bash
 poetry run invoke lint
 ```
+
+Initializing / resetting the database:
+
+```bash
+poetry run build-db
+```
