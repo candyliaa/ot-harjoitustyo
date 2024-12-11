@@ -90,8 +90,8 @@ class Settings:
     def change_ball_color(self):
         """A method to update config object's ball_color attribute according to user input.
         """
-        self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta")
-        new_color = self._io.read("Input new color for ball: ")
+        self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta\n6. White (default)")
+        new_color = self._io.read("\nInput new color for ball: ")
         if new_color not in self._settings_menu_commands.keys():
             self._io.print("Invalid color!")
             return
@@ -105,6 +105,8 @@ class Settings:
             self._config.ball_color = color_dict["yellow"]
         elif new_color == "5":
             self._config.ball_color = color_dict["magenta"]
+        elif new_color == "6":
+            self._config.ball_color = color_dict["white"]
         self.print_successful_change()
 
     def change_paddle_speed(self):
@@ -124,7 +126,7 @@ class Settings:
     def change_paddle_color(self):
         """A method to update config object's paddle_color attribute according to user input.
         """
-        self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta")
+        self._io.print("1. Red\n2. Blue\n3. Yellow\n4. Magenta\n5. Green (default)")
         new_color = self._io.read("\nInput new color for paddles: ")
         if new_color not in ["1", "2", "3", "4", "5"]:
             self._io.print("Invalid color!")
@@ -132,13 +134,13 @@ class Settings:
         if new_color == "1":
             self._config.paddle_color = color_dict["red"]
         elif new_color == "2":
-            self._config.paddle_color = color_dict["green"]
-        elif new_color == "3":
             self._config.paddle_color = color_dict["blue"]
-        elif new_color == "4":
+        elif new_color == "3":
             self._config.paddle_color = color_dict["yellow"]
-        elif new_color == "5":
+        elif new_color == "4":
             self._config.paddle_color = color_dict["magenta"]
+        elif new_color == "5":
+            self._config.paddle_color = color_dict["green"]
 
     def change_difficulty(self):
         """A method to update config object's difficulty attribute according to user input.
@@ -162,11 +164,11 @@ class Settings:
         """A method to update config object's ball_amount attribute according to user input.
         """
         try:
-            new_amount = int(self._io.read("\nInput amount of balls: (1 to 5)\n"))
+            new_amount = int(self._io.read("\nInput amount of balls: (1 to 10)\n"))
         except:
             self._io.print("Input is not a number! Returning to settings menu...")
             return
-        if new_amount not in [1, 2, 3, 4, 5]:
+        if new_amount not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
             self._io.print("Invalid amount!")
             return
         self._config.ball_amount = new_amount
