@@ -34,14 +34,14 @@ class Stats:
 
             elif command == "1":
                 scores = self._stat_repo.get_scores()
-                self._io.print(f"{'Session no.' : <15}{'Own score' : ^10}{'Enemy score' : >15}")
+                self._io.print(f"\n{'Session no.' : <15}{'Own score' : ^10}{'Enemy score' : >15}")
                 for score in scores:
                     self._io.print(f"{score[0] : >10}{score[1] : ^20}{score[2] : >10}")
 
             elif command == "2":
                 misc_stats = self._stat_repo.get_misc_stats()
-                self._io.print(f"{'Ball bounces' : <15}{'Own travel distance' : ^20}{'Enemy travel distance' : >20}")
-                self._io.print(f"{misc_stats[0][0] : <15}{misc_stats[0][1] : ^20}{misc_stats[0][2] : >20}")
+                self._io.print(f"\n{'Ball bounces' : <15}{'Own travel distance' : ^20}{'Enemy travel distance' : >20}")
+                self._io.print(f"{misc_stats[0][0] : <15}{misc_stats[0][1] : ^20}{misc_stats[0][2] : >20}\n")
     
             elif command == "3":
                 self._io.print("Returning to main menu...\n")
@@ -62,7 +62,7 @@ class Settings:
             io: The IO object to read user inputs.
         """
         self._io = io
-        self.config = config
+        self._config = config
         self._settings_menu_commands = {
             "1": "1. Change ball speed (default 15)",
             "2": "2. Change ball color",
@@ -76,11 +76,15 @@ class Settings:
     def change_ball_speed(self):
         """A method to update the config object's ball_speed attribute according to user input.
         """
-        new_speed = int(self._io.read("\nInput new speed value for ball (between 1 and 50, default 15): "))
+        try:
+            new_speed = int(self._io.read("\nInput new speed value for ball (between 1 and 50, default 15): "))
+        except:
+            self._io.print("Input is not a number! Returning to settings menu...")
+            return
         if new_speed < 1 or new_speed > 50:
             self._io.print("Speed value too small or too big!")
             return
-        self.config.ball_speed = new_speed
+        self._config.ball_speed = new_speed
         self.print_successful_change()
 
     def change_ball_color(self):
@@ -88,29 +92,33 @@ class Settings:
         """
         self._io.print("1. Red\n2. Green\n3. Blue\n4. Yellow\n5. Magenta")
         new_color = self._io.read("Input new color for ball: ")
-        if new_color not in ["1", "2", "3", "4", "5"]:
+        if new_color not in self._settings_menu_commands.keys():
             self._io.print("Invalid color!")
             return
         if new_color == "1":
-            self.config.ball_color = color_dict["red"]
+            self._config.ball_color = color_dict["red"]
         elif new_color == "2":
-            self.config.ball_color = color_dict["green"]
+            self._config.ball_color = color_dict["green"]
         elif new_color == "3":
-            self.config.ball_color = color_dict["blue"]
+            self._config.ball_color = color_dict["blue"]
         elif new_color == "4":
-            self.config.ball_color = color_dict["yellow"]
+            self._config.ball_color = color_dict["yellow"]
         elif new_color == "5":
-            self.config.ball_color = color_dict["magenta"]
+            self._config.ball_color = color_dict["magenta"]
         self.print_successful_change()
 
     def change_paddle_speed(self):
         """A method to update config object's paddle_speed attribute according to user input.
         """
-        new_speed = int(self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): "))
+        try:
+            new_speed = int(self._io.read("\nInput new speed value for paddle (between 1 and 30, default 10): "))
+        except:
+            self._io.print("Input is not a number! Returning to settings menu...")
+            return
         if new_speed < 1 or new_speed > 30:
             self._io.print("Speed value too small or too big!")
             return
-        self.config.paddle_speed = new_speed
+        self._config.paddle_speed = new_speed
         self.print_successful_change()
 
     def change_paddle_color(self):
@@ -122,15 +130,15 @@ class Settings:
             self._io.print("Invalid color!")
             return
         if new_color == "1":
-            self.config.paddle_color = color_dict["red"]
+            self._config.paddle_color = color_dict["red"]
         elif new_color == "2":
-            self.config.paddle_color = color_dict["green"]
+            self._config.paddle_color = color_dict["green"]
         elif new_color == "3":
-            self.config.paddle_color = color_dict["blue"]
+            self._config.paddle_color = color_dict["blue"]
         elif new_color == "4":
-            self.config.paddle_color = color_dict["yellow"]
+            self._config.paddle_color = color_dict["yellow"]
         elif new_color == "5":
-            self.config.paddle_color = color_dict["magenta"]
+            self._config.paddle_color = color_dict["magenta"]
 
     def change_difficulty(self):
         """A method to update config object's difficulty attribute according to user input.
@@ -141,13 +149,13 @@ class Settings:
             self._io.print("Invalid difficulty!")
             return
         if new_difficulty == "1":
-            self.config.difficulty = 0.4
+            self._config.difficulty = 0.4
         elif new_difficulty == "2":
-            self.config.difficulty = 0.6
+            self._config.difficulty = 0.6
         elif new_difficulty == "3":
-            self.config.difficulty = 0.8
+            self._config.difficulty = 0.8
         elif new_difficulty == "4":
-            self.config.difficulty = 1
+            self._config.difficulty = 1
         self.print_successful_change()
 
     def change_ball_amount(self):
@@ -157,7 +165,7 @@ class Settings:
         if new_amount not in ["1", "2", "3", "4", "5"]:
             self._io.print("Invalid amount!")
             return
-        self.config.ball_amount = int(new_amount)
+        self._config.ball_amount = int(new_amount)
 
     def execute(self):
         """A loop to interact on the cli with the user.
@@ -166,7 +174,7 @@ class Settings:
         
         while True:
             self.print_instructions()
-            command = self._io.read("Input command: ")
+            command = self._io.read("\nInput command: ")
 
             if not command in self._settings_menu_commands:
                 self._io.print("Invalid command!")
@@ -191,7 +199,7 @@ class Settings:
                 self.change_ball_amount()
 
             elif command == "7":
-                self._io.print("Settings saved!")
+                self._io.print("\nSettings saved!")
                 break
 
     def print_instructions(self):
@@ -212,7 +220,7 @@ class PongCLI:
             stats: The stats repository object used to read from and write to the database.
         """
         self._io = io
-        self.config = config
+        self._config = config
         self._start_menu_commands = {
             "1": "1. Start game",
             "2": Stats(io, stats),
@@ -227,20 +235,19 @@ class PongCLI:
             A bool according to which the app starts the game or quits out.
         """
         self._io.print("\nWelcome to Pong!")
-        self.start_game = False
+        self._start_game = False
         while True:
             self.start_menu_instructions()
             command = str(self._io.read("\nInput command: "))
             if not command in self._start_menu_commands:
                 self._io.print("Invalid command!")
                 continue
-
             if command == "1":
-                self.start_game = True
-                return self.start_game
+                self._start_game = True
+                return self._start_game
             if command == "4":
-                self.start_game = False
-                return self.start_game
+                self._start_game = False
+                return self._start_game
 
             command_object = self._start_menu_commands[command]
             command_object.execute()
