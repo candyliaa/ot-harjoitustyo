@@ -22,7 +22,7 @@ class Game:
         """
         self.config = config
         # Initialize starting variables
-        self.running = True
+        self._running = True
 
         self.own_score = 0
         self.enemy_score = 0
@@ -35,11 +35,11 @@ class Game:
         pygame.init()
 
         pygame.font.init()
-        self.font = pygame.font.SysFont("Arial", 24)
+        self._font = pygame.font.SysFont("Arial", 24)
 
-        self.clock = pygame.time.Clock()
+        self._clock = pygame.time.Clock()
 
-        self.collision_timeout = 0
+        self._collision_timeout = 0
 
         pygame.display.set_caption("Pong!")
         self.game_window.fill(color_dict["black"])
@@ -63,28 +63,28 @@ class Game:
              self.config.paddle_color,
              self.config.paddle_size)
 
-        self.own_movement = 0
-        self.enemy_movement = 0
+        self._own_movement = 0
+        self._enemy_movement = 0
 
     def start_game(self):
         """The game loop.
         """
-        while self.running:
+        while self._running:
             for event in pygame.event.get():
                 if not self.keep_running(event):
-                    self.running = False
+                    self._running = False
                     return
 
-            self.own_movement = self.get_input()
+            self._own_movement = self.get_input()
 
             if random.random() < self.config.difficulty:
-                self.enemy_movement = self.enemy_movement_logic(self.enemy_paddle, self.ball)
+                self._enemy_movement = self.enemy_movement_logic(self.enemy_paddle, self.ball)
 
             scored = self.ball.update(self.config.window_size)
-            self.own_paddle.update(self.config.window_size, self.own_movement)
-            self.enemy_paddle.update(self.config.window_size, self.enemy_movement)
+            self.own_paddle.update(self.config.window_size, self._own_movement)
+            self.enemy_paddle.update(self.config.window_size, self._enemy_movement)
 
-            self.enemy_movement = 0
+            self._enemy_movement = 0
 
             if scored:
                 if scored == "own":
@@ -94,16 +94,16 @@ class Game:
                 elif scored == "bounce":
                     self.ball_bounces += 1
 
-            if self.collision_timeout == 0:
+            if self._collision_timeout == 0:
                 if self.paddle_collision(self.own_paddle, self.enemy_paddle, self.ball):
-                    self.collision_timeout = 10
+                    self._collision_timeout = 10
 
             self.own_paddle.display_paddle(self.game_window)
             self.enemy_paddle.display_paddle(self.game_window)
             self.ball.draw_ball(self.game_window)
 
             self.game_window.blit(
-                self.font.render(
+                self._font.render(
                     f"Points: {self.own_score}",
                     False,
                     color_dict["white"]
@@ -112,7 +112,7 @@ class Game:
                 )
 
             self.game_window.blit(
-                self.font.render(
+                self._font.render(
                     f"Points: {self.enemy_score}",
                     False,
                     color_dict["white"]
@@ -122,10 +122,10 @@ class Game:
 
             pygame.display.update()
             self.game_window.fill(color_dict["black"])
-            self.clock.tick(self.config.fps)
+            self._clock.tick(self.config.fps)
 
-            if self.collision_timeout > 0:
-                self.collision_timeout -= 1
+            if self._collision_timeout > 0:
+                self._collision_timeout -= 1
 
     def keep_running(self, event):
         """Check if the game should close.
