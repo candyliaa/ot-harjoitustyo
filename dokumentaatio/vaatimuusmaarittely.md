@@ -6,18 +6,20 @@ The app is a version of the game Pong, where the user can configure settings suc
 
 ## Basic functionality
 
-- Users can launch the game and play a basic version of Pong ✅
+- Users can launch the game and play a version of Pong ✅
   - Settings are configured on the command line, after which the game launches ✅
     - Config file is saved ✅
 - Stats are saved into a database ✅
-  - The user can view their stats on the cli ✅
+  - The user can view their stats on the CLI ✅
 
 ## Extra features
 
 - Customizability ✅
   - Users could change the color of their paddle or the ball, for example ✅
-- Gameplay modifiers
-  - As mentioned above, users could change the parameters of the game in a multitude of ways, granting more (or less) points(?)
-    - Game speed ✅
-    - Amount of balls
+- Gameplay modifiers ✅
+  - As mentioned above, users could change the parameters of the game in a multitude of ways:
+    - Ball speed ✅
+    - Paddle speed ✅
+    - Amount of balls ✅
     - Difficulty of opponent AI ✅
+- CLI UI has fancy colors, tables and text using Rich ✅

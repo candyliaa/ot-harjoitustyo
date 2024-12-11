@@ -1,5 +1,5 @@
-import pygame
 import random
+import pygame
 
 class Ball:
     """Ball object for the pong game."""
@@ -16,7 +16,8 @@ class Ball:
         self.__initial_y = pos[1]
 
         self.position = pygame.math.Vector2(pos[0], pos[1])
-        self.direction = pygame.math.Vector2(random.choice([-1, 1]), random.uniform(-1, 1)).normalize()
+        self.direction = pygame.math.Vector2(random.choice([-1, 1]),
+                                             random.uniform(-1, 1)).normalize()
 
         self.speed = speed
         self.color = color
@@ -35,7 +36,7 @@ class Ball:
             A string or None to signify what happened to the ball.
         """
         self.position += self.speed * self.direction
-        
+
         if self.position.x <= 0 - self.size:
             self.reset()
             scored = "own"

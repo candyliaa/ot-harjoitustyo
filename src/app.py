@@ -45,7 +45,7 @@ class Game:
         self.game_window.fill(color_dict["black"])
 
         self.balls = []
-        for i in range(self.config.ball_amount):
+        for _ in range(self.config.ball_amount):
             self.balls.append(Ball((self.config.window_size[0]//2,
                             self.config.window_size[1]//2),
                             self.config.ball_speed,
