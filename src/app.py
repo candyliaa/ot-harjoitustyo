@@ -44,11 +44,13 @@ class Game:
         pygame.display.set_caption("Pong!")
         self.game_window.fill(color_dict["black"])
 
-        self.ball = Ball((self.config.window_size[0]//2,
-                          self.config.window_size[1]//2),
-                          self.config.ball_speed,
-                          self.config.ball_color,
-                          self.config.ball_size)
+        self.balls = []
+        for i in range(self.config.ball_amount):
+            self.balls.append(Ball((self.config.window_size[0]//2,
+                            self.config.window_size[1]//2),
+                            self.config.ball_speed,
+                            self.config.ball_color,
+                            self.config.ball_size))
 
         self.own_paddle = Paddle(
             (self.config.window_size[0]-100,
@@ -78,29 +80,36 @@ class Game:
             self._own_movement = self.get_input()
 
             if random.random() < self.config.difficulty:
-                self._enemy_movement = self.enemy_movement_logic(self.enemy_paddle, self.ball)
+                closest_ball = self.balls[0]
+                for ball in self.balls:
+                    if ball.position[0] < closest_ball.position[0]:
+                        closest_ball = ball
+                self._enemy_movement = self.enemy_movement_logic(self.enemy_paddle, closest_ball)
 
-            scored = self.ball.update(self.config.window_size)
+            for ball in self.balls:
+                ball.update(self.config.window_size)
+                scored = ball.update(self.config.window_size)
+                if scored:
+                    if scored == "own":
+                        self.own_score += 1
+                    elif scored == "enemy":
+                        self.enemy_score += 1
+                    elif scored == "bounce":
+                        self.ball_bounces += 1
             self.own_paddle.update(self.config.window_size, self._own_movement)
             self.enemy_paddle.update(self.config.window_size, self._enemy_movement)
 
             self._enemy_movement = 0
 
-            if scored:
-                if scored == "own":
-                    self.own_score += 1
-                elif scored == "enemy":
-                    self.enemy_score += 1
-                elif scored == "bounce":
-                    self.ball_bounces += 1
-
-            if self._collision_timeout == 0:
-                if self.paddle_collision(self.own_paddle, self.enemy_paddle, self.ball):
-                    self._collision_timeout = 10
+            for ball in self.balls:
+                if ball.collision_timeout == 0:
+                    if self.paddle_collision(self.own_paddle, self.enemy_paddle, ball):
+                        ball.collision_timeout = 10
 
             self.own_paddle.display_paddle(self.game_window)
             self.enemy_paddle.display_paddle(self.game_window)
-            self.ball.draw_ball(self.game_window)
+            for ball in self.balls:
+                ball.draw_ball(self.game_window)
 
             self.game_window.blit(
                 self._font.render(
