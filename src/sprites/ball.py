@@ -34,6 +34,8 @@ class Ball:
         Returns:
             A string or None to signify what happened to the ball.
         """
+        self.position += self.speed * self.direction
+        
         if self.position.x <= 0 - self.size:
             self.reset()
             scored = "own"
@@ -46,8 +48,6 @@ class Ball:
         if self.position.y <= 0 + self.size or self.position.y >= window_size[1] - self.size:
             self.direction.y = -self.direction.y
             scored = "bounce"
-
-        self.position += self.speed * self.direction
 
         return scored
 
