@@ -4,6 +4,8 @@ The app is a version of the game Pong, but with additional (perhaps even silly) 
 
 ## Documentation
 
+[Releases](https://github.com/candyliaa/ot-harjoitustyo/releases)
+
 [Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
 
 [Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
