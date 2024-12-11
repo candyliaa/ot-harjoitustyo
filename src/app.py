@@ -132,8 +132,9 @@ class Game:
             self.game_window.fill(color_dict["black"])
             self._clock.tick(self.config.fps)
 
-            if self._collision_timeout > 0:
-                self._collision_timeout -= 1
+            for ball in self.balls:
+                if ball.collision_timeout > 0:
+                    ball.collision_timeout -= 1
 
     def keep_running(self, event):
         """Check if the game should close.
