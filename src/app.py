@@ -185,9 +185,9 @@ class Game:
         Returns:
             An integer that decides if the enemy should move up or down.
         """
-        if enemy_paddle.get_center().y < ball.position.y:
+        if enemy_paddle.get_center().y + 25 < ball.position.y:
             return 1
-        if enemy_paddle.get_center().y > ball.position.y:
+        if enemy_paddle.get_center().y - 25 > ball.position.y:
             return -1
         return ball.direction.y
 
