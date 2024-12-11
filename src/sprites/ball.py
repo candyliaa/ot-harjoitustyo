@@ -22,6 +22,8 @@ class Ball:
 
         self.size = size
 
+        self.collision_timeout = 0
+
     def update(self, window_size):
         """Updates the ball according to its movement physics.
 
