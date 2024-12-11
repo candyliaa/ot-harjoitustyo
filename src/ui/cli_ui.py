@@ -161,11 +161,16 @@ class Settings:
     def change_ball_amount(self):
         """A method to update config object's ball_amount attribute according to user input.
         """
-        new_amount = self._io.read("\nInput amount of balls: (1 to 5)")
-        if new_amount not in ["1", "2", "3", "4", "5"]:
+        try:
+            new_amount = int(self._io.read("\nInput amount of balls: (1 to 5)\n"))
+        except:
+            self._io.print("Input is not a number! Returning to settings menu...")
+            return
+        if new_amount not in [1, 2, 3, 4, 5]:
             self._io.print("Invalid amount!")
             return
-        self._config.ball_amount = int(new_amount)
+        self._config.ball_amount = new_amount
+        self.print_successful_change()
 
     def execute(self):
         """A loop to interact on the cli with the user.
