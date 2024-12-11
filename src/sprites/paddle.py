@@ -14,10 +14,10 @@ class Paddle:
         """
         self.x = pos[0]
         self.y = pos[1]
-        self.size = size
-        self.speed = speed
-        self.color = color
-        self.width = 40
+        self._size = size
+        self._speed = speed
+        self._color = color
+        self._width = 40
         self.traveled = 0
 
     def update(self, window_size, movement=0):
@@ -27,11 +27,11 @@ class Paddle:
             window_size: The size of the game window.
             movement: An integer that tells the method which direction the paddle should move in.
         """
-        self.y += self.speed * movement
-        self.traveled += abs(self.speed * movement)
+        self.y += self._speed * movement
+        self.traveled += abs(self._speed * movement)
         self.y = max(self.y, 0)
-        if self.y + self.size >= window_size[1]:
-            self.y = window_size[1] - self.size
+        if self.y + self._size >= window_size[1]:
+            self.y = window_size[1] - self._size
 
     def display_paddle(self, game_window):
         """Method to draw a paddle on the game window.
@@ -40,7 +40,7 @@ class Paddle:
             game_window: The pygame game window.
         """
         paddle_rect = self.get_paddle_rect()
-        pygame.draw.rect(game_window, self.color, paddle_rect)
+        pygame.draw.rect(game_window, self._color, paddle_rect)
 
     def get_paddle_rect(self):
         """Method to return a rectangle representing the paddle.
@@ -48,7 +48,7 @@ class Paddle:
         Returns:
             A pygame.Rect object which represents the paddle's hitbox.
         """
-        return pygame.Rect(self.x, self.y, self.width, self.size)
+        return pygame.Rect(self.x, self.y, self._width, self._size)
 
     def get_center(self):
         """Method to return the center point of the paddle.
@@ -56,4 +56,4 @@ class Paddle:
         Returns:
             A pygame.math.Vector2 object which represents the middle point of the paddle.
         """
-        return pygame.math.Vector2(self.x + self.width // 2, self.y + self.size // 2)
+        return pygame.math.Vector2(self.x + self._width // 2, self.y + self._size // 2)

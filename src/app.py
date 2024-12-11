@@ -69,6 +69,8 @@ class Game:
         self._enemy_movement = 0
 
     def _update_objects(self):
+        """Method to update the position of each game object in play.
+        """
         for ball in self.balls:
             scored = ball.update(self.config.window_size)
             if scored:
@@ -82,6 +84,8 @@ class Game:
         self.enemy_paddle.update(self.config.window_size, self._enemy_movement)
 
     def _display_game_objects(self):
+        """Method to draw each game object in play to the game window.
+        """
         self.own_paddle.display_paddle(self.game_window)
         self.enemy_paddle.display_paddle(self.game_window)
         for ball in self.balls:
@@ -110,6 +114,8 @@ class Game:
         self._clock.tick(self.config.fps)
 
     def _move_enemy(self):
+        """Method to move the enemy paddle according to the closest ball's y-position.
+        """
         if random.random() < self.config.difficulty:
             closest_ball = self.balls[0]
             for ball in self.balls:
