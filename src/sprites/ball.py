@@ -16,7 +16,7 @@ class Ball:
         self.__initial_y = pos[1]
 
         self.position = pygame.math.Vector2(pos[0], pos[1])
-        self.direction = pygame.math.Vector2(1, random.uniform(-1, 1)).normalize()
+        self.direction = pygame.math.Vector2(random.choice([-1, 1]), random.uniform(-1, 1)).normalize()
 
         self.speed = speed
         self.color = color
