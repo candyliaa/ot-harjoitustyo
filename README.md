@@ -6,6 +6,8 @@ The app is a version of the game Pong, but with additional (perhaps even silly) 
 
 [Releases](https://github.com/candyliaa/ot-harjoitustyo/releases)
 
+[Usage instructions](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+
 [Requirement specification](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/vaatimuusmaarittely.md)
 
 [Work hours](https://github.com/candyliaa/ot-harjoitustyo/blob/main/dokumentaatio/workhours.md)
@@ -16,13 +18,13 @@ The app is a version of the game Pong, but with additional (perhaps even silly) 
 
 ## Installation instructions
 
-1a. Clone the repository to your machine:
+1. (a) Download the latest [release](https://github.com/candyliaa/ot-harjoitustyo/releases).
+
+1. (a) Alternatively, clone the repository to your machine:
 
 ```bash
 git clone https://github.com/candyliaa/ot-harjoitustyo.git
 ```
-
-1b. Alternatively, download the latest release.
 
 2. In the root directory of the project, run
 

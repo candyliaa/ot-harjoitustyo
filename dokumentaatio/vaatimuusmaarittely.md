@@ -23,3 +23,14 @@ The app is a version of the game Pong, where the user can configure settings suc
     - Amount of balls ✅
     - Difficulty of opponent AI ✅
 - CLI UI has fancy colors, tables and text using Rich ✅
+
+## Potential future features
+
+- More settings to configure on the CLI
+  - Paddle size
+  - Ball size
+  - Framerate
+  - Game window size
+- Additional game modes
+  - Soccer(?)
+  - More paddles
