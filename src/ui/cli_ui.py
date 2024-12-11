@@ -28,7 +28,7 @@ class PongCLI:
             A bool according to which the app starts the game or quits out.
         """
         self._io.print("\n[italic]Welcome to Pong![/italic]")
-        self._start_game = False
+        self.start_game = False
         while True:
             self.start_menu_instructions()
             command = str(self._io.read("\nInput command: "))
@@ -36,12 +36,12 @@ class PongCLI:
                 self._io.print("\n[red][!] Invalid command![/red]\n")
                 continue
             if command == "1":
-                self._start_game = True
-                return self._start_game
+                self.start_game = True
+                return self.start_game
             if command == "4":
-                self._start_game = False
+                self.start_game = False
                 self._io.print("[italic]See you next time![/italic]")
-                return self._start_game
+                return self.start_game
 
             command_object = self._start_menu_commands[command]
             command_object.execute()
