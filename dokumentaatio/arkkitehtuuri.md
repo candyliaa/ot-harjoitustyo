@@ -48,9 +48,3 @@ Also table `misc`, which contains columns `session, ball_bounces, own_paddle_tra
 ## Possible improvements
 
 As it is now, `app.py` is quite large and could possibly be split into smaller files and / or classes. On the other hand, having the game logic in one class makes it easier to read the flow of the events.
-
-# Sequence diagram
-
-![image](https://github.com/user-attachments/assets/b57ed777-03d8-4e85-bff6-d80f0994dfc3)
-
-The individual components are initialized before starting the game.
